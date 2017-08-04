@@ -25,12 +25,20 @@ module.exports = {
         }
       },
       {
+        test:/\.less$/,
+        loader:'vue-style-loader!css-loader!less-loader'
+      },  
+      {
+        test:/\.css$/,
+        loader:'style-loader!css-loader',
+      },
+      {
         test: /\.js$/,
         loader: 'babel-loader',
         exclude: /node_modules/
       },
       {
-        test: /\.(png|jpg|gif|svg)$/,
+        test: /\.(png|jpg|gif|svg|eot|svg|ttf|woff|woff2|otf)$/,
         loader: 'file-loader',
         options: {
           name: '[name].[ext]?[hash]'
