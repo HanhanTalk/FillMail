@@ -1,9 +1,17 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 //path
+//logins
 import signIn from '../page/logins/signIn.vue'
 import signUp from '../page/logins/signUp.vue'
 import forget from '../page/logins/forget.vue'
+import protocol from '../page/logins/protocol.vue'
+//index
+import index from '../page/index/index.vue'
+
+//dashboard
+import inbox from '../page/index/childen/inbox/inbox.vue'
+// import deleted from '../page/index/childen/deleted/deleted.vue'
 
 
 Vue.use(VueRouter)
@@ -11,11 +19,23 @@ Vue.use(VueRouter)
 const router = new VueRouter({
     routes:[
         //主页
-        // {
-        //     path:'/home',
-        //     name:'home',
-        //     component:home
-        // },
+        {
+            path:'/index',
+            name:'index',
+            component:index,
+            children:[
+                {
+                    path:'inbox',
+                    name:'inbox',
+                    component:inbox
+                },
+                // {
+                //     path:'deleted',
+                //     name:'deleted',
+                //     component:deleted
+                // }
+            ]
+        },
         //登录
         {
             path:'/signIn',
@@ -32,6 +52,11 @@ const router = new VueRouter({
             path:'/forget',
             name:'forget',
             component:forget
+        },
+        {
+            path:'/protocol',
+            name:'protocol',
+            component:protocol
         }
     ]
 })

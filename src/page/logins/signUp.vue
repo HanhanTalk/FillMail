@@ -13,7 +13,7 @@
             </div>
         </header>
         <div class="mui-content">
-            <div class="mui-form">
+            <div class="mui-form" ref="formSignUp">
                 <div class="mui-form-head">
                     <div class="form-title">
                         <h1>用户注册</h1>
@@ -24,23 +24,23 @@
                         <div class="mui-list-item-inner">
                             <label>6~16个字符，可使用字母、数字、下划线</label>
                             <div class="mui-list-item-input short-input">
-                                <input class="box-noline" type="text" placeholder="邮箱*"><span>@fillmail.com</span>
+                                <input @focus="onFocus" class="box-noline" type="text" placeholder="邮箱*"><span>@fillmail.com</span>
                             </div>
                             <label>6～16个字符，区分大小写</label>
                             <div class="mui-list-item-input">
-                                <input class="box-noline" type="password" placeholder="密码*">
+                                <input @focus="onFocus" class="box-noline" type="password" placeholder="密码*">
                             </div>
                             <label>确认密码</label>
                             <div class="mui-list-item-input">
-                                <input class="box-noline" type="password" placeholder="再次输入密码*">
+                                <input @focus="onFocus" class="box-noline" type="password" placeholder="再次输入密码*">
                             </div>
                              <label>请填写图中验证码，不区分大小写</label>
                             <div class="mui-list-item-input short-input">
-                                <input class="box-noline" type="text" placeholder="验证码*"><img>
+                                <input @focus="onFocus" class="box-noline" type="text" placeholder="验证码*"><span><img src="../../images/tool/timg2.jpeg"></span>
                             </div>
                         </div>
                         <div class="mui-item-bottom">
-                            <p class="mui-pull-right">注册代表你已同意<a href="javascript:;">「FillMail用户协议」</a></p>     
+                            <p class="mui-pull-right">注册代表你已同意<a @click="toProtocol" href="javascript:;">「FillMail用户协议」</a></p>     
                         </div>
                         <button type="button" class="mui-btn form-btn col-yellow">立即注册</button>
                     </div>
@@ -55,12 +55,23 @@ export default {
   methods:{
       toSignUp(){
           this.$router.push({name:'signIn'});
-      }
+      },
+      toProtocol(){
+          this.$router.push({name:'protocol'});
+      },
+      onFocus(){
+            let _this = this;
+            setTimeout(function(){
+                let _pannel = _this.$refs.formSignUp;
+                _pannel.scrollIntoView(true);
+
+            },500);
+        }
   }
 }
 </script>
 <style lang="scss" scoped>
-$navbar-color:rgba(38, 37, 42, 1);
+$navbar-color:#26252a;
 $navbar-height:150px;
 $font-small:24px;
 $font-middle:30px;
@@ -68,8 +79,12 @@ $font-title:40px;
 $back-color:#fafafa;
 $input-height:70px;
 .page-warp {
-    width: 100%;
-    height: 100%;
+   position: absolute;
+   top:0;
+   bottom: 0;
+   left:0;
+   right: 0;
+   overflow: hidden;
 }
 .reg-bg-color{
     background:$back-color;
@@ -181,6 +196,11 @@ $input-height:70px;
                 position: absolute;
                 top:0;
                 right: 0;
+                img{
+                    width: 90%;
+                    height: 60px;
+                    margin:5px 0;
+                }
                 }
                 input{
                  border-radius: 35px 0 0 35px;
@@ -227,7 +247,7 @@ $input-height:70px;
     width:400px;
 }
 .col-yellow{
-    background:rgba(255,203,2,1);
+    background:#ffcb02;
 }
 .box-noline{
     outline:none;

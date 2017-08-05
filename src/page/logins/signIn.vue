@@ -16,20 +16,20 @@
             <div class="mui-form">
                 <div class="mui-form-head">
                     <div class="form-user-pic">
-                        <img class="user-pic-circle" src="../../images/anonym.jpg">
+                        <img class="user-pic-circle" src="../../images/userpic/user-01.jpeg">
                     </div>
                     <div class="form-title">
                         <h1>用户登录</h1>
                     </div>
                 </div>
-                <div class="mui-form-contrl">
+                <div class="mui-form-contrl" ref="formSignIn">
                     <div class="mui-list-item">
                         <div class="mui-list-item-inner">
                             <div class="mui-list-item-input">
-                                <input class="box-noline" type="text" placeholder="请输入邮箱*">
+                                <input @focus="onFocus" class="box-noline" type="text" placeholder="请输入邮箱*">
                             </div>
                             <div class="mui-list-item-input">
-                                <input class="box-noline" type="password" placeholder="请输入密码*">
+                                <input @focus="onFocus" class="box-noline" type="password" placeholder="请输入密码*">
                             </div>
                         </div>
                         <div class="mui-item-bottom">
@@ -40,7 +40,7 @@
                             </div>
                             <a @click="forgetPass" class="mui-pull-right" href="javascript:;">糟糕了，忘记了密码</a>        
                         </div>
-                        <button type="button" class="mui-btn form-btn col-yellow">立即登录</button>
+                        <button @click="signIn" type="button" class="mui-btn form-btn col-yellow">立即登录</button>
                     </div>
                 </div>
             </div>     
@@ -54,8 +54,20 @@ export default {
         toSignUp(){
             this.$router.push({name:'signUp'})
         },
+        signIn(){
+            //登录成功后跳转
+            this.$router.push({name:'inbox'})
+        },
         forgetPass(){
             this.$router.push({name:'forget'})
+        },
+        onFocus(){
+            let _this = this;
+            setTimeout(function(){
+                let _pannel = _this.$refs.formSignIn;
+                _pannel.scrollIntoView(true);
+
+            },500);
         }
     }
 }
@@ -66,11 +78,15 @@ $navbar-height:150px;
 $font-small:24px;
 $font-middle:30px;
 $font-title:40px;
-$back-color:rgba(38, 37, 42, 1);
+$back-color:#26252a;
 $input-height:70px;
 .page-warp {
-    width: 100%;
-    height: 100%;
+   position: absolute;
+   top:0;
+   bottom: 0;
+   left:0;
+   right: 0;
+overflow: hidden;
 }
 .nav-btn{
     width:250px;
@@ -220,7 +236,7 @@ $input-height:70px;
     margin:40px 0;
 }
 .col-yellow{
-    background:rgba(255,203,2,1);
+    background:#ffcb02;
 }
 .box-noline{
     outline:none;

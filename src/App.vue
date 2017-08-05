@@ -71,4 +71,9 @@ list-style-type:none;
     left: 0;
     bottom: 0;
 }
+.page-warp{
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
 </style>
