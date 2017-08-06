@@ -25,15 +25,15 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
   .toShow{
     position: absolute;
     left: 500px !important;
     top: 100px !important;
     height: 1100px !important;
     animation: sideShow 1s 1;
-    -webkit-animation: sideShow 1s 1;
-    -moz-animation: sideShow 1s 1;
+    // -webkit-animation: sideShow 1s 1;
+    // -moz-animation: sideShow 1s 1;
   }
   @keyframes sideShow{
     from{
@@ -47,30 +47,30 @@ export default {
        height: 1100px;
     }
   }
-  @-webkit-keyframes sideShow{
-    from{
-      left:0;
-      top:0;
-      height:100%;
-    }
-    to{
-       left: 500px;
-       top: 100px ;
-       height: 1100px;
-    }
-  }
-  @-moz-keyframes sideShow{
-    from{
-      left:0;
-      top:0;
-      height:100%;
-    }
-    to{
-       left: 500px;
-       top: 100px ;
-       height: 1100px;
-    }
-  }
+  // @-webkit-keyframes sideShow{
+  //   from{
+  //     left:0;
+  //     top:0;
+  //     height:100%;
+  //   }
+  //   to{
+  //      left: 500px;
+  //      top: 100px ;
+  //      height: 1100px;
+  //   }
+  // }
+  // @-moz-keyframes sideShow{
+  //   from{
+  //     left:0;
+  //     top:0;
+  //     height:100%;
+  //   }
+  //   to{
+  //      left: 500px;
+  //      top: 100px ;
+  //      height: 1100px;
+  //   }
+  // }
 
   .toHide{
     position: absolute;
@@ -78,8 +78,8 @@ export default {
     top:0;
     height: 100%;
     animation: sideHide 1s 1;
-    -moz-animation: sideHide 1s 1;
-    -webkit-animation: sideHide 1s 1;
+    // -moz-animation: sideHide 1s 1;
+    // -webkit-animation: sideHide 1s 1;
     
   }
   @keyframes sideHide{
@@ -94,30 +94,30 @@ export default {
       height:100%;
     }
   }
-  @-moz-keyframes sideHide{
-    from{
-      left: 500px;
-       top: 100px;
-       height: 1100px;
-    }
-    to{
-      left:0;
-      top:0;
-      height:100%;
-    }
-  }
-  @-webkit-keyframes sideHide{
-    from{
-      left: 500px;
-       top: 100px;
-       height: 1100px;
-    }
-    to{
-      left:0;
-      top:0;
-      height:100%;
-    }
-  }
+  // @-moz-keyframes sideHide{
+  //   from{
+  //     left: 500px;
+  //      top: 100px;
+  //      height: 1100px;
+  //   }
+  //   to{
+  //     left:0;
+  //     top:0;
+  //     height:100%;
+  //   }
+  // }
+  // @-webkit-keyframes sideHide{
+  //   from{
+  //     left: 500px;
+  //      top: 100px;
+  //      height: 1100px;
+  //   }
+  //   to{
+  //     left:0;
+  //     top:0;
+  //     height:100%;
+  //   }
+  // }
   .ui-index{
     z-index:1;
   }

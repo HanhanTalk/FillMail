@@ -10,8 +10,10 @@ import protocol from '../page/logins/protocol.vue'
 import index from '../page/index/index.vue'
 
 //dashboard
-import inbox from '../page/index/childen/inbox/inbox.vue'
+import inbox from '../page/index/children/inbox/inbox.vue'
 // import deleted from '../page/index/childen/deleted/deleted.vue'
+//sendMail
+import sendMail from '../page/send/send.vue'
 
 
 Vue.use(VueRouter)
@@ -35,6 +37,12 @@ const router = new VueRouter({
                 //     component:deleted
                 // }
             ]
+        },
+        //发送邮件
+         {
+            path:'/sendMail',
+            name:'sendMail',
+            component:sendMail
         },
         //登录
         {

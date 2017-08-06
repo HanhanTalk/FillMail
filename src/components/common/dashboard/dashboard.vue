@@ -16,7 +16,7 @@
             </div> 
           </div>
           <div class="side-btn">
-              <button type="button">发送邮件</button>
+              <button @click="sendMail" type="button">发送邮件</button>
           </div>
           <hr class="division">
           <div class="mui-sidebar-list">
@@ -24,7 +24,7 @@
                  <li v-for="item in sidebarList" :key="item.id">
                     <span class="fa" :class="item.icon"></span>
                         <a href="javascript:;">{{item.name}}</a>
-                    <span class="mui-pull-right mui-tag">10</span>
+                    <span v-if="item.tag !== 0" class="mui-pull-right mui-tag">{{item.tag}}</span>
                  </li>
              </ul>
           </div>
@@ -52,27 +52,32 @@ export default {
               {
                   id: 1,
                   name: '收件箱',
-                  icon: 'fa-inbox'
+                  icon: 'fa-inbox',
+                  tag:10
               },
               {
                   id: 2,
                   name: '星标邮件',
-                  icon: 'fa-star-o'
+                  icon: 'fa-star-o',
+                  tag:0
               },
               {
                   id:3,
                   name:'草稿箱',
-                  icon:'fa-folder-open-o'
+                  icon:'fa-folder-open-o',
+                  tag:0
               },
               {
                   id:4,
                   name:'发件箱',
-                  icon:'fa-send'
+                  icon:'fa-send',
+                  tag:0
               },
               {
                   id:5,
                   name:'垃圾箱',
-                  icon:'fa-trash'
+                  icon:'fa-trash',
+                  tag:0
               }
           ],
           labelList:[
@@ -93,6 +98,11 @@ export default {
               }
           ]
       }
+  },
+  methods:{
+      sendMail(){
+          this.$router.push({name:'sendMail'});
+      }
   }
 }
 </script>
@@ -109,7 +119,7 @@ export default {
         padding: 100px 70px;
         box-sizing: border-box;
         .mui-sidebar-head{
-            height: 200px;
+            height: 150px;
         }
     }
     .mui-pull-left{

@@ -1,5 +1,6 @@
 <template>
     <div class="mui-navbar">
+        <div class="mui-navbar-nav">
         <div class="mui-pull-left">
             <span class="fa fa-navicon" @click="dash"></span>
         </div>
@@ -8,6 +9,7 @@
         </div>
         <div class="mui-nav-title">
             收件箱
+        </div>
         </div>
     </div>
 </template>
@@ -31,13 +33,17 @@ export default {
   }
 </script>
 <style lang="scss" scoped>
-    $navbar-color:#26252a;
+    $navbar-color:rgb(35,37,66);
     $font-color:#fafafa;
     $navbar-height:100px;
     .mui-navbar{
         height: $navbar-height;
         background: $navbar-color;
         color: $font-color;
+        padding-top:50px;
+        .mui-navbar-nav{
+            position: relative;
+        }
         .mui-nav-title{
             font-size:40px;
             text-align: center;
