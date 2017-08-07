@@ -15,6 +15,8 @@ import inbox from '../page/index/children/inbox/inbox.vue'
 //sendMail
 import sendMail from '../page/send/send.vue'
 
+//friends
+import friends from '../page/friends/friends.vue'
 
 Vue.use(VueRouter)
 // 路由配置：如果需要添加路由，就在这里添加
@@ -39,10 +41,16 @@ const router = new VueRouter({
             ]
         },
         //发送邮件
-         {
+        {
             path:'/sendMail',
             name:'sendMail',
             component:sendMail
+        },
+        //好友列表
+        {
+            path:'/friends',
+            name:'friends',
+            component:friends
         },
         //登录
         {
