@@ -70,7 +70,7 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 $navbar-color:#26252a;
 $navbar-height:150px;
 $font-small:24px;

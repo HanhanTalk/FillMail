@@ -1,5 +1,5 @@
 <template>
-    <div class="page-warp login-bg-color animated fadeIn">
+    <div class="page-warp login-bg-color animated fadeIn signIn">
         <header class="mui-bar mui-bar-nav">
             <a class="mui-pull-left">
                 <span class="mui-icon mui-icon-middle">
@@ -72,7 +72,7 @@ export default {
     }
 }
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
 $navbar-color:#fafafa;
 $navbar-height:150px;
 $font-small:24px;
@@ -145,102 +145,106 @@ overflow: hidden;
 .login-bg-color {
     background: $back-color;
 }
-
-.mui-form{
-    margin: 100px 80px;
-}
-.form-title{
-    font-size:$font-title;
-    color: #ffffff;
-}
-.form-user-pic{
-    width: 300px;
-    height: 300px;
-    img{
-        width: 200px;
-        height:200px;
-        margin: 50px 0;
-    }
-}
-.user-pic-circle{
-    border-radius: 20px;
-}
-.mui-list-item-inner{
-    margin: 20px 0;
-}
-.mui-list-item-input{
-    width: 100%;
-    height:$input-height;
-    margin-bottom:$input-height;
-    input{
-        width: 100%;
-        height: 100%;
-        border-radius: $input-height/2;
-        border: none;
-        box-sizing: border-box;
-        padding:0 30px;
-        font-size:$font-middle;
-    }
-}
-.mui-item-bottom{
-    width: 100%;
-    height:45px;
-    line-height: 45px;
-    color:#ffffff;
-    font-size:$font-middle;
-    margin: 150px 0 50px 0;
-    input{
-        width:40px;
-        height:40px;
-        margin-right:10px;
-    };
-    a{
-        color:#b6b6b6;
-    }
-    .mui-radio{
-        width: 45px;
-        height: 45px;
-        position: absolute;
-        left:0;
-        top:0;
-        display: block;
-        background:$navbar-color;
-        border-radius: 5px;
-        span{
-            font-size:40px;
-            margin-left:4px;
+.signIn{
+    .mui-content{
+        .mui-form{
+            margin: 100px 80px;
+            .form-title{
+                font-size:$font-title;
+                color: #ffffff;
+            }
+            .form-user-pic{
+                width: 300px;
+                height: 300px;
+                img{
+                    width: 200px;
+                    height:200px;
+                    margin: 50px 0;
+                }
+                .user-pic-circle{
+                    border-radius: 20px;
+                }
+            }
+            .mui-list-item-inner{
+                    margin: 20px 0;
+            }
+            .mui-list-item-input{
+                width: 100%;
+                height:$input-height;
+                margin-bottom:$input-height;
+                input{
+                    width: 100%;
+                    height: 100%;
+                    border-radius: $input-height/2;
+                    border: none;
+                    box-sizing: border-box;
+                    padding:0 30px;
+                    font-size:$font-middle;
+                }
+            }
+            .mui-item-bottom{
+                    width: 100%;
+                    height:45px;
+                    line-height: 45px;
+                    color:#ffffff;
+                    font-size:$font-middle;
+                    margin: 150px 0 50px 0;
+                    input{
+                        width:40px;
+                        height:40px;
+                        margin-right:10px;
+                    };
+                    a{
+                        color:#b6b6b6;
+                    }
+                    .mui-radio{
+                        width: 45px;
+                        height: 45px;
+                        position: absolute;
+                        left:0;
+                        top:0;
+                        display: block;
+                        background:$navbar-color;
+                        border-radius: 5px;
+                        span{
+                            font-size:40px;
+                            margin-left:4px;
+                        }
+                    }
+                    
+                }
+                .radio-ctrl{
+                    height: 45px;
+                    width: 180px;
+                    float: left;
+                    line-height: 45px;
+                    position: relative;  
+                    label{
+                        display: block;
+                        float: right;
+                    }
+                }
+                .mui-btn{
+                    border:none;
+                    outline: none;
+                    font-size:$font-middle;
+                    border-radius:50px; 
+                }
+                .form-btn{
+                    height:80px;
+                    width:400px;
+                    margin:40px 0;
+                }
+                .col-yellow{
+                    background:#ffcb02;
+                }
+                .box-noline{
+                    outline:none;
+                }   
         }
     }
-    
 }
-.radio-ctrl{
-    height: 45px;
-    width: 180px;
-    float: left;
-    line-height: 45px;
-    position: relative;  
-    label{
-        display: block;
-        float: right;
-    }
-}
-.mui-btn{
-    border:none;
-    outline: none;
-    font-size:$font-middle;
-    border-radius:50px; 
-}
-.form-btn{
-    height:80px;
-    width:400px;
-    margin:40px 0;
-}
-.col-yellow{
-    background:#ffcb02;
-}
-.box-noline{
-    outline:none;
-}
+
 </style>
 
 

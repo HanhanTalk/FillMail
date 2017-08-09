@@ -15,6 +15,9 @@ import inbox from '../page/index/children/inbox/inbox.vue'
 //sendMail
 import sendMail from '../page/send/send.vue'
 
+//unread
+import unRead from '../page/unread/unread.vue'
+
 //friends
 import friends from '../page/friends/friends.vue'
 
@@ -64,15 +67,23 @@ const router = new VueRouter({
             name:'signUp',
             component:signUp
         },
+        //忘记密码
         {
             path:'/forget',
             name:'forget',
             component:forget
         },
+        //用户注册守则
         {
             path:'/protocol',
             name:'protocol',
             component:protocol
+        },
+        {
+            path:'/unRead',
+            name:'unRead',
+            component:unRead
+
         }
     ]
 })

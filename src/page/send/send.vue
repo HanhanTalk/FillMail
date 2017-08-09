@@ -1,5 +1,16 @@
 <template>
     <div class="page-warp send-page animated fadeIn" @click="pageClick">
+      <div class="mui-tips-mask page-warp" v-if="tipsShow">
+          <div class="tips-box">
+            <div class="tips-caption">
+                是否保存草稿？
+            </div>
+            <div class="tips-btn-group">
+              <a href="javascript:;" @click="delDraft">删除草稿</a>
+              <a href="javascript:;" @click="saveDraft">保存草稿</a>
+            </div>
+          </div>
+        </div>
       <header class="mui-send-navbar">
           <div class="mui-navbar-nav">
               <div class="mui-pull-left">
@@ -72,6 +83,7 @@ export default {
       userlist:false,
       search:'',
       searchShow:false,
+      tipsShow:false,
       //模拟数据
       friends:[
         {
@@ -104,7 +116,13 @@ export default {
       this.userlist = false;
     },
     cancelClick(){
+      this.tipsShow = true;
+    },
+    delDraft(){
       window.history.go(-1);
+    },
+    saveDraft(){
+
     },
     userListClick(){
       this.userlist= !this.userlist;
@@ -114,6 +132,7 @@ export default {
     },
     //添加收件人
     sendFriendClick(item){
+       this.search = '';
        let _hasUser = false;
        this.sendFriends.forEach(function(element){
           if(element == item){
@@ -163,7 +182,43 @@ export default {
       overflow-y: scroll;
 
     }
-
+  .mui-tips-mask{
+     z-index:2;
+      background:rgba(0,0,0,0.3);
+      .tips-box{
+        width:600px;
+        height:200px;
+        position: absolute;
+        top:600px;
+        left:50%;
+        margin-left:-300px;
+        background:#ffffff;
+        box-shadow: 10px 10px 40px #727272; 
+        box-sizing: border-box;
+        padding:30px;
+        .tips-caption{
+           font-size:36px;
+           height:70px;
+        }
+        .tips-btn-group{
+            float:right;
+            height:70px;
+           a{
+             font-size:30px;
+             text-decoration: none;
+             display: inline-block;
+              width:150px;
+              height:70px;
+              text-align: center;
+              line-height: 70px;
+              color:#03a9f4;
+           }
+           a:active{
+             background:#dddddd;
+           }
+        }
+      }
+  }
   .mui-send-page{
           background: #fafafa;
           position: absolute;
@@ -265,12 +320,6 @@ export default {
               border-radius: 50%;
               display: block;
               float:left;
-            }
-            p{
-            
-            }
-            span{
-
             }
           }
         }
@@ -385,6 +434,7 @@ export default {
         height:120px;
         width: 100%;
         border-bottom: 2px solid #dddddd;
+        border-top: 2px solid #dddddd;
         margin:10px 0;
         input{
           height: 110px;

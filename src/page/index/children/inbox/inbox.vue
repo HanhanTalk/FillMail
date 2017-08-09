@@ -10,13 +10,13 @@
             </div>
             <div class="mui-pull-right mui-long">
               <div class="mui-item-header">
-                picapicaqiu
+                皮卡丘
               </div>
               <div class="mui-item-content">
-                new project newMessage
+                你在哪里啊，我今天下午请你吃饭出来玩
               </div>
               <div class="mui-item-footer">
-                Hi picapicaqiu,you can come 
+                等下我把餐厅地址发给你哦
               </div>
               <div class="item-time">
                 11:12 AM

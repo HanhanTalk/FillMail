@@ -5,7 +5,10 @@
             <span class="fa fa-navicon" @click="dash"></span>
         </div>
         <div class="mui-pull-right">
-            <span class="fa fa-edit" @click="edit"></span>
+            <span class="fa fa-envelope-o" @click="unRead">
+                <span class="mui-nav-icon-badge">8</span>
+            </span>
+
         </div>
         <div class="mui-nav-title">
             收件箱
@@ -26,8 +29,8 @@ export default {
          this.isShow = !this.isShow;
          this.$emit('transferEven',this.isShow);
       },
-      edit(){
-          
+      unRead(){
+        this.$router.push({name:'unRead'});
       }
   }
   }
@@ -43,6 +46,18 @@ export default {
         padding-top:50px;
         .mui-navbar-nav{
             position: relative;
+        }
+        .mui-nav-icon-badge{
+            display: block;
+            position:absolute;
+            top:8px;
+            left:0;
+            font-size:20px;
+            line-height: 40px;
+            width:40px;
+            height:40px;
+            background:#F44336;
+            border-radius:50%; 
         }
         .mui-nav-title{
             font-size:40px;

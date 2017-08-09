@@ -1,9 +1,9 @@
 <template>
-  <div class="page-warp">
+  <div class="page-warp bg-color-friend" @click="cancelSearch">
      <div class="page-head-friend">
          <div class="page-head-nav-friend">
              <div class="mui-pull-left">
-                <a href="javascript:;"><span class="fa fa-arrow-left"></span></a>
+                <a href="javascript:;" @click="back"><span class="fa fa-arrow-left"></span></a>
              </div>
              <div class="mui-pull-right">
                 <a href="javascript:;">确定</a>
@@ -12,21 +12,56 @@
                 联系人
              </div>
          </div>
+         <div class="search-input-friend animated slideInUp" v-if="toMove" @click.stop>
+             <input type="text" placeholder="搜索联系人" v-model="search">
+             <button type="button" @click="cancelSearch">取消</button>
+         </div>
          <div class="page-head-menu-friend">
             <ul>
-                <li @click="menuClick(item)" v-for ="(item,index) in icons" :key="item.id" :class="{'menu-active-friend': index === active}">
+                <li @click.stop="menuClick(item)" v-for ="(item,index) in icons" :key="item.id" :class="{'menu-active-friend': index === active}">
                     <i class="fa" :class="item.icon"></i>
                 </li>
             </ul>
          </div>
      </div>
-     <div class="page-item-list-friend">
-         <ul id="friend">
+     <div class="page-item-list-friend" :class="{'page-item-move':toMove}">
+         <div class="page-item-head-friend">
+             <i class="fa fa-bars"></i>
+         </div>
+         <ul id="friend" v-if="active === 0">
              <li v-for ="item in friends" :key="item.id">
                  <img :src="item.url">
                  <div class="item-list-caption-friend">
                      <span>{{item.name}}</span>
-                        <p>{{item.account}}</p>
+                        <p>
+                            {{item.account}}
+                        </p>
+                 </div>
+             </li>
+         </ul>
+         <ul id="group" v-if="active === 1">
+            <li v-for ="item in group" :key="item.id">
+                <img :src="item.url">
+                <div class="item-list-caption-friend">
+                    <span>{{item.name}}</span>
+                    <p>
+                        <ul>
+                            <li v-for="item in group[0].member" :key="item.id">
+                                {{item.name}}、
+                            </li>
+                        </ul>
+                    </p>
+                </div>
+            </li>
+         </ul>
+         <ul id="searchItem" v-if="active === 2">
+             <li v-for="item in searchIn" :key="item.id">
+                  <img :src="item.url">
+                     <div class="item-list-caption-friend">
+                     <span>{{item.name}}</span>
+                        <p>
+                            {{item.account}}
+                        </p>
                  </div>
              </li>
          </ul>
@@ -39,6 +74,8 @@ export default {
     data(){
         return{
             active:0,
+            toMove:false,
+            search:'',
             //模拟用户数据
             friends:[
              {
@@ -58,6 +95,35 @@ export default {
                 name:'熊猫',
                 account:'panda@fillmail.com',
                 url:'./src/images/userpic/user-04.jpeg'
+                }
+            ],
+            group:[
+                {
+                    id:1,
+                    name:'家庭',
+                    url:'./src/images/userpic/group-01.jpeg',
+                    info:'3个成员',
+                    member:[
+                        {
+                            id:1,
+                            name:'海绵宝宝',
+                            account:'haimianbaobao@fillmail.com',
+                            url:'./src/images/userpic/user-03.jpeg'
+                        },
+                        {
+                            id:2,
+                            name:'小怪兽',
+                            account:'xiaoguaishou@fillmail.com',
+                            url:'./src/images/userpic/user-06.jpeg'
+                        },
+                        {
+                            id:3,
+                            name:'熊猫',
+                            account:'panda@fillmail.com',
+                            url:'./src/images/userpic/user-04.jpeg'
+                        }
+                    ]
+
                 }
             ],
             icons:[
@@ -84,6 +150,15 @@ export default {
         }
     },
     methods:{
+        back(){
+            window.history.go(-1);
+        },
+        cancelSearch(){
+            this.toMove = false;
+        },
+        barsClick(){
+            this.toMove = !this.toMove;
+        },
         cancelClick(){
             window.history.go(-1);
         },
@@ -99,17 +174,30 @@ export default {
                 }
                 default:{
                     this.active = 2;
+                    this.barsClick();
                 }
             }
         }
 
+    },
+    computed:{
+      //搜索filter
+        searchIn() {
+          var _this = this;
+        if (this.search !== '') {
+          return this.friends.filter(function (item) {
+            return (item.name.indexOf(_this.search) > -1 || item.account.indexOf(_this.search) > -1)
+          })
+        }
+      }
     }
 
 }   
 </script>
 <style lang="scss">
-    $margin-y-friend:80px;
-    $margin-x-friend:50px;
+    .bg-color-friend{
+        background:#fafafa;
+    }
    .page-head-friend{
        height: 400px;
        position: absolute;
@@ -119,7 +207,7 @@ export default {
        background:url(../../images/bg-img/12.jpg);
        background-size:100%;
        box-sizing: border-box;
-       padding:$margin-y-friend $margin-x-friend 0 $margin-x-friend;
+       padding:80px 50px 0 50px;
    }
    .page-head-nav-friend{
        height: 100px;
@@ -191,14 +279,34 @@ export default {
            color: rgb(5,244,225) !important;
            border-bottom:8px solid rgb(5,244,225);
        }
+    .page-item-move{
+        top:200px !important;
+    }
    .page-item-list-friend{
        position: absolute;
         top: 400px;
         left: 0;
         right: 0;
+        min-height: 800px;
         overflow-y: scroll;
        box-sizing:border-box;
        padding:50px 40px; 
+        background: #fafafa;
+        transition: top 1s;
+       .page-item-head-friend{
+           position: absolute;
+           top:0;
+           height:50px;
+           left:0;
+           right:0;
+           text-align: center;
+           line-height: 50px;
+           border-bottom:1px solid #f1f0f0;
+           i{
+               font-size:30px;
+               color: #dddddd;
+           }
+       }
        li{
             box-sizing: border-box;
             padding: 40px 0;
@@ -221,6 +329,12 @@ export default {
                     font-size:30px;
                     color:#727272;
                      margin-top:20px;
+                     li{
+                        padding: 0;
+                        float: left;
+                        height: 50px;
+                        border: none;
+                     }
                 }
                 span{
                     font-size: 40px;
@@ -231,6 +345,33 @@ export default {
         li:last-child{
            border:none;
         }
+   }
+   .search-input-friend{
+           position: absolute;
+            top: 100px;
+            width: 600px;
+            margin-left: -300px;
+            left: 50%;
+            height: 100px;
+       input{
+             width: 500px;
+             height: 90px;
+             border:none;
+             font-size:30px;
+             padding-left:10px;
+             box-sizing: border-box;
+             box-shadow: 0 5px 10px #727272;
+       }
+       button{
+           width:100px;
+           height:92px;
+           float:right;
+           background:#F44336;
+           border: none;
+           color: #fafafa;
+           font-size:30px;
+           box-shadow: 0 5px 10px #800a01;
+       }
    }
 </style>
 
