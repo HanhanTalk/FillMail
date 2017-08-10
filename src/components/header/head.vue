@@ -1,5 +1,5 @@
 <template>
-    <div class="mui-navbar">
+    <div class="mui-navbar" :class="{'fiex':fiexValue}">
         <div class="mui-navbar-nav">
         <div class="mui-pull-left">
             <span class="fa fa-navicon" @click="dash"></span>
@@ -21,13 +21,22 @@ export default {
   name:'headGui',
   data(){
     return{
-        isShow:true
+        isShow:true,
+        fiexValue:true
     }
   },
   methods:{
       dash(){
          this.isShow = !this.isShow;
          this.$emit('transferEven',this.isShow);
+        if(this.isShow){
+            this.fiexValue = false;
+        }
+        if(!this.isShow){
+            setTimeout(()=>{
+                this.fiexValue = true;
+            },1000);
+        }
       },
       unRead(){
         this.$router.push({name:'unRead'});
@@ -36,14 +45,21 @@ export default {
   }
 </script>
 <style lang="scss" scoped>
-    $navbar-color:rgb(35,37,66);
-    $font-color:#fafafa;
+    $navbar-color:#232542;
+    $font-color:cyan;
     $navbar-height:100px;
+    .fiex{
+        position: fixed !important;
+        z-index: 3;
+    }
     .mui-navbar{
         height: $navbar-height;
         background: $navbar-color;
         color: $font-color;
         padding-top:50px;
+        position: absolute;
+        top:0;
+        width: 100%;
         .mui-navbar-nav{
             position: relative;
         }
@@ -63,6 +79,7 @@ export default {
             font-size:40px;
             text-align: center;
             line-height: $navbar-height;
+            color:#fafafa;
         }
         span{
             font-size:7ex;

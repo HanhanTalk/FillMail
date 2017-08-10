@@ -7,7 +7,12 @@
                     <img src="../../../images/userpic/user-01.jpeg">
                 </div>
                 <div class="frofile-icon mui-pull-right">
-                    <span class="fa fa-angle-down"></span>
+                    <span @click="menuClick" class="fa fa-angle-down"></span>
+                    <div class="down-menu animated fadeIn" v-if="menuListShow">
+                        <ul>
+                            <li v-for="item in menuList" :key="item.id"><i :class="item.icon" class="fa"></i>{{item.name}}</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="frofile-item">
                     <p class="frofile-item-title">Matthew Dix</p>
@@ -21,7 +26,7 @@
           <hr class="division">
           <div class="mui-sidebar-list">
              <ul>
-                 <li v-for="item in sidebarList" :key="item.id">
+                 <li @click="sidebarClick(item)" v-for="item in sidebarList" :key="item.id">
                     <span class="fa" :class="item.icon"></span>
                         <a href="javascript:;">{{item.name}}</a>
                     <span v-if="item.tag !== 0" class="mui-pull-right mui-tag">{{item.tag}}</span>
@@ -48,12 +53,29 @@ export default {
   name:'dashboard',
   data() {
       return {
+          menuList:[
+            {
+                id:1,
+                name:'通信录',
+                icon:'fa-address-book-o'
+            },
+            {
+                id:2,
+                name:'我的消息',
+                icon:'fa-commenting-o'
+            },
+            {
+                id:3,
+                name:'账号设置',
+                icon:'fa-cog'
+            },
+          ],
           sidebarList: [
               {
                   id: 1,
                   name: '收件箱',
                   icon: 'fa-inbox',
-                  tag:10
+                  tag:8
               },
               {
                   id: 2,
@@ -69,13 +91,19 @@ export default {
               },
               {
                   id:4,
-                  name:'发件箱',
+                  name:'已发送',
                   icon:'fa-send',
                   tag:0
               },
               {
                   id:5,
-                  name:'垃圾箱',
+                  name:'垃圾邮件',
+                  icon:'fa-minus-circle',
+                  tag:0
+              },
+              {
+                  id:6,
+                  name:'已删除',
                   icon:'fa-trash',
                   tag:0
               }
@@ -96,12 +124,43 @@ export default {
                   name:'重要的',
                   icon:'fa-info-circle'
               }
-          ]
+          ],
+          menuListShow:false
       }
   },
   methods:{
       sendMail(){
           this.$router.push({name:'sendMail'});
+      },
+      menuClick(){
+          this.menuListShow = !this.menuListShow;
+      },
+      sidebarClick(value){
+        switch(value){
+            case 1:{
+                this.$router.push({name:'inbox'});
+                break;
+            }
+            case 2:{
+                this.$router.push({name:'starred'});
+                break;
+            }
+            case 3:{
+                this.$router.push({name:'drafts'});
+                break;
+            }
+            case 4:{
+                this.$router.push({name:'sentmail'});
+                break;
+            }
+            case 5:{
+                this.$router.push({name:'junkmail'});
+                break;
+            }
+            default:{
+                this.$router.push({name:'deleted'});
+            }
+        }
       }
   }
 }
@@ -131,6 +190,24 @@ export default {
         position: absolute;
         right:0;
         top:0;
+    }
+    .down-menu{
+        position: absolute;
+        right: 0;
+        background: #ffffff;
+        border-radius: 10px;
+        color: #000000;
+        padding: 10px 20px;
+        z-index:2;
+        li{
+            width: 160px;
+            height: 80px;
+            line-height: 80px;
+            text-align: left;
+            i{
+                margin-right:10px;
+            }
+        }
     }
     .mui-sidebar-list{
         position: relative;
@@ -220,7 +297,7 @@ export default {
     
     }
     .division{
-        margin: 50px 0 20px 0;
+        margin: 50px 0;
     }
 </style>
 

@@ -34,7 +34,7 @@ export default {
     }
     .mui-search{
         height: $search-height;
-        border-bottom: 2px solid;
+        border-bottom: 2px solid #727272;
         position: relative;
         transition: height 0.5s;
         input{
@@ -47,6 +47,9 @@ export default {
             border: none;
             outline: none;
             transition: height 1s;
+        }
+        i{
+            color:#727272;
         }
         a{
             font-size:40px;

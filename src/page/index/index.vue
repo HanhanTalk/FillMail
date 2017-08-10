@@ -1,6 +1,6 @@
 <template>
   <div class="page-warp">
-      <div class="page-warp ui-index" :class="[show ? 'toShow':'toHide']">
+      <div class="mui-index-warp ui-index" :class="[show ? 'toShow':'toHide']">
           <headGui @transferEven="fadeShow"></headGui>
           <router-view></router-view>
       </div>
@@ -128,6 +128,13 @@ export default {
     right:0;
     bottom: 0;
     overflow: hidden;
+  }
+  .mui-index-warp{
+    position: absolute;
+    height:1334px;
+    width:750px;
+    top:0;
+    left:0;
   }
 </style>
 
