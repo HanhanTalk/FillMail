@@ -169,7 +169,7 @@ export default {
 }
 </script>
 <style lang="scss">
-    $navbar-color:rgb(35,37,66);
+    $navbar-color:#232542;
     $font-color:#fafafa;
     $navbar-height:100px;
 

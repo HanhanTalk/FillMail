@@ -14,12 +14,12 @@ import inbox from '../page/index/children/inbox/inbox.vue'
 // import deleted from '../page/index/childen/deleted/deleted.vue'
 //sendMail
 import sendMail from '../page/send/send.vue'
-
 //unread
 import unRead from '../page/unread/unread.vue'
-
 //friends
 import friends from '../page/friends/friends.vue'
+//mailbox
+import mailbox from '../page/mailbox/mail.vue'
 
 Vue.use(VueRouter)
 // 路由配置：如果需要添加路由，就在这里添加
@@ -79,11 +79,18 @@ const router = new VueRouter({
             name:'protocol',
             component:protocol
         },
+        //未读
         {
             path:'/unRead',
             name:'unRead',
             component:unRead
 
+        },
+        //mailbox
+        {
+            path:'/mailbox/:mailId',
+            name:'mailbox',
+            component:mailbox
         }
     ]
 })

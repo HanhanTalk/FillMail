@@ -26,16 +26,19 @@
      </div>
      <div class="page-item-list-friend" :class="{'page-item-move':toMove}">
          <div class="page-item-head-friend">
-             <i class="fa fa-bars"></i>
+             <a href="javascript:;" @click="chooseIn"><i class="fa fa-bars"></i></a>
          </div>
          <ul id="friend" v-if="active === 0">
-             <li v-for ="item in friends" :key="item.id">
+             <li @click="chooseClick(index)" v-for ="(item,index) in friends" :key="item.id">
                  <img :src="item.url">
                  <div class="item-list-caption-friend">
                      <span>{{item.name}}</span>
                         <p>
                             {{item.account}}
                         </p>
+                 </div>
+                 <div class="chooseBtn" v-if="chooseInShow">
+                     <a><img v-if="item.choose == true" src="../../images/bg-img/check.svg"></a>
                  </div>
              </li>
          </ul>
@@ -69,6 +72,7 @@
   </div>
 </template>
 <script>
+import Vue from 'vue';
 export default {
     name:'friends',
     data(){
@@ -76,9 +80,11 @@ export default {
             active:0,
             toMove:false,
             search:'',
+            chooseInShow:false,
+            choose_user:[],
             //模拟用户数据
             friends:[
-             {
+                {
                 id:1,
                 name:'海绵宝宝',
                 account:'haimianbaobao@fillmail.com',
@@ -149,9 +155,20 @@ export default {
         
         }
     },
+    mounted(){
+        this.friends.forEach(function(element,index){
+            this.$set(this.friends[index],'choose',false);
+        }.bind(this));
+    },
     methods:{
         back(){
             window.history.go(-1);
+        },
+        chooseIn(){
+          this.chooseInShow = !this.chooseInShow;
+        },
+        chooseClick(value){
+            this.friends[value].choose = !this.friends[value].choose;
         },
         cancelSearch(){
             this.toMove = false;
@@ -312,6 +329,29 @@ export default {
             padding: 40px 0;
             height:200px;
             border-bottom: 2px solid #dddddd;
+            position: relative;
+            .chooseBtn{
+                height:120px;
+                width:120px;
+                box-sizing: border-box;
+                padding:30px;
+                position: absolute;
+                right:0;
+                a{
+                    display: block;
+                    height:100%;
+                    width: 100%;
+                    border-radius: 50%;
+                    border:4px solid rgb(63,161,66);
+                    img{
+                        width:80%;
+                        height:80%;
+                        border-radius: 50%;
+                        margin:10%;
+                        
+                    }
+                }
+            }
            img{
                 width: 120px;
                 height: 120px;

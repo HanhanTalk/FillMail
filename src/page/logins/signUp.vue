@@ -1,5 +1,5 @@
 <template>
-     <div class="page-warp reg-bg-color animated fadeIn">
+     <div class="page-warp reg-bg-color animated fadeIn signUp">
         <header class="mui-bar mui-bar-nav">
             <a class="mui-pull-left">
                 <span class="mui-icon mui-icon-middle">
@@ -86,58 +86,54 @@ $input-height:70px;
    right: 0;
    overflow: hidden;
 }
-.reg-bg-color{
-    background:$back-color;
-}
-.nav-btn{
-    width:250px;
-    height:80px;
-    background:$back-color;
-    color:$navbar-color;
-    margin:0 10px;
-}
-.mui-bar {
-    height: $navbar-height;
-    background: $navbar-color;
-}
-
-.mui-pull-left {
-    float: left;
-}
-
-.mui-pull-right {
-    float: right;
-    a{  
-        color:#000000;
-        font-size:$font-middle;
-        text-decoration: none;
+.signUp{
+    .reg-bg-color{
+        background:$back-color;
     }
+    .mui-bar {
+        height: $navbar-height;
+        background: $navbar-color;
+         .nav-btn{
+            width:250px;
+            height:80px;
+            background:$back-color;
+            color:$navbar-color;
+            margin:0 10px;
+            }
+        }
+        .mui-icon-middle {
+            width: $navbar-height;
+            height: $navbar-height;
+        }
+        .mui-icon {
+            position: relative;
+            display: block;
+            background: $back-color;
+            color: $navbar-color;
+            .mui-logo-babge {
+                position: absolute;
+                top: 40px;
+                right: 10px;
+                font-size: $font-small;
+                }
+            img {
+                margin: 15px;
+                width: 120px;
+                height: 120px;
+            }
+        }
+        .mui-pull-left {
+            float: left;
+        }
+        .mui-pull-right {
+            float: right;
+            a{  
+                color:#000000;
+                font-size:$font-middle;
+                text-decoration: none;
+            }
+        }
 }
-
-.mui-icon-middle {
-    width: $navbar-height;
-    height: $navbar-height;
-}
-
-.mui-icon {
-    position: relative;
-    display: block;
-    background: $back-color;
-    color: $navbar-color;
-    img {
-        margin: 15px;
-        width: 120px;
-        height: 120px;
-    }
-}
-
-.mui-logo-babge {
-    position: absolute;
-    top: 40px;
-    right: 10px;
-    font-size: $font-small;
-}
-
 .fairlylong {
     height: $navbar-height;
     line-height: $navbar-height;

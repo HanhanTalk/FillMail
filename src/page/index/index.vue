@@ -1,6 +1,6 @@
 <template>
-  <div class="page-warp">
-      <div class="mui-index-warp ui-index" :class="[show ? 'toShow':'toHide']">
+  <div :class="{'overhide':show}" class="page-warp">
+      <div class="ui-index page-inner-box" :class="[show ? 'toShow overhide':'toHide']">
           <headGui @transferEven="fadeShow"></headGui>
           <router-view></router-view>
       </div>
@@ -32,8 +32,6 @@ export default {
     top: 100px !important;
     height: 1100px !important;
     animation: sideShow 1s 1;
-    // -webkit-animation: sideShow 1s 1;
-    // -moz-animation: sideShow 1s 1;
   }
   @keyframes sideShow{
     from{
@@ -47,40 +45,13 @@ export default {
        height: 1100px;
     }
   }
-  // @-webkit-keyframes sideShow{
-  //   from{
-  //     left:0;
-  //     top:0;
-  //     height:100%;
-  //   }
-  //   to{
-  //      left: 500px;
-  //      top: 100px ;
-  //      height: 1100px;
-  //   }
-  // }
-  // @-moz-keyframes sideShow{
-  //   from{
-  //     left:0;
-  //     top:0;
-  //     height:100%;
-  //   }
-  //   to{
-  //      left: 500px;
-  //      top: 100px ;
-  //      height: 1100px;
-  //   }
-  // }
 
   .toHide{
     position: absolute;
     left:0;
     top:0;
     height: 100%;
-    animation: sideHide 1s 1;
-    // -moz-animation: sideHide 1s 1;
-    // -webkit-animation: sideHide 1s 1;
-    
+    animation: sideHide 1s 1; 
   }
   @keyframes sideHide{
     from{
@@ -94,30 +65,6 @@ export default {
       height:100%;
     }
   }
-  // @-moz-keyframes sideHide{
-  //   from{
-  //     left: 500px;
-  //      top: 100px;
-  //      height: 1100px;
-  //   }
-  //   to{
-  //     left:0;
-  //     top:0;
-  //     height:100%;
-  //   }
-  // }
-  // @-webkit-keyframes sideHide{
-  //   from{
-  //     left: 500px;
-  //      top: 100px;
-  //      height: 1100px;
-  //   }
-  //   to{
-  //     left:0;
-  //     top:0;
-  //     height:100%;
-  //   }
-  // }
   .ui-index{
     z-index:1;
   }
@@ -127,14 +74,20 @@ export default {
     left:0;
     right:0;
     bottom: 0;
-    overflow: hidden;
   }
-  .mui-index-warp{
-    position: absolute;
-    height:1334px;
+  // .mui-index-warp{
+  //   position: absolute;
+  //   top:0;
+  //   left:0;
+  //   right:0;
+  //   bottom: 0;
+  //   overflow-y:scroll; 
+  // }
+  .page-inner-box{
     width:750px;
-    top:0;
-    left:0;
+  }
+  .overhide{
+    overflow: hidden;
   }
 </style>
 

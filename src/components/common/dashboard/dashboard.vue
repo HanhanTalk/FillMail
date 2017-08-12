@@ -69,6 +69,11 @@ export default {
                 name:'账号设置',
                 icon:'fa-cog'
             },
+            {
+                id:4,
+                name:'退出登录',
+                icon:'fa-sign-out'
+            }
           ],
           sidebarList: [
               {
