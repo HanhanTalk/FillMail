@@ -1,6 +1,6 @@
 <template>
     <div class="page-warp send-page animated fadeIn" @click="pageClick">
-      <div class="mui-tips-mask page-warp" v-if="tipsShow">
+       <div class="mui-tips-mask page-warp" v-if="tipsShow">
           <div class="tips-box">
             <div class="tips-caption">
                 是否保存草稿？
@@ -10,7 +10,7 @@
               <a href="javascript:;" @click="saveDraft">保存草稿</a>
             </div>
           </div>
-        </div>
+        </div> 
       <header class="mui-send-navbar">
           <div class="mui-navbar-nav">
               <div class="mui-pull-left">

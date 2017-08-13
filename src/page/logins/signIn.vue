@@ -26,10 +26,10 @@
                     <div class="mui-list-item">
                         <div class="mui-list-item-inner">
                             <div class="mui-list-item-input">
-                                <input @focus="onFocus" class="box-noline" type="text" placeholder="请输入邮箱*">
+                                <input @focus="onFocus" class="box-noline" type="text" placeholder="请输入邮箱*" v-model="account">
                             </div>
                             <div class="mui-list-item-input">
-                                <input @focus="onFocus" class="box-noline" type="password" placeholder="请输入密码*">
+                                <input @focus="onFocus" class="box-noline" type="password" placeholder="请输入密码*" v-model="password">
                             </div>
                         </div>
                         <div class="mui-item-bottom">
@@ -40,23 +40,45 @@
                             </div>
                             <a @click="forgetPass" class="mui-pull-right" href="javascript:;">糟糕了，忘记了密码</a>        
                         </div>
-                        <button @click="signIn" type="button" class="mui-btn form-btn col-yellow">立即登录</button>
+                        <button @click="toLogin" type="button" class="mui-btn form-btn col-yellow">立即登录</button>
                     </div>
                 </div>
             </div>     
         </div>
     </div>
 </template>
-<script type="text/scmascript6">
+ <script type="text/scmascript6">
+ import api from '../../api/api'
+//  import { signIn } from '../../api/api'
 export default {
     name: 'singIn',
+    data(){
+        return{
+            account:'',
+            password:''
+        }
+    },
     methods:{
         toSignUp(){
             this.$router.push({name:'signUp'})
         },
-        signIn(){
+        toLogin(){
             //登录成功后跳转
-            this.$router.push({name:'inbox'})
+            if( this.account == '' || this.password == ''){
+                alert('用户名或密码不能为空！');
+            }
+            else{
+                //调用API登录接口
+                api.signIn({
+                    name:this.account,
+                    password:this.password
+                }).then((response) => {
+                    //登录成功
+                    this.$router.push({name:'inbox'}); 
+                    this.password = '';
+                })
+              
+            }
         },
         forgetPass(){
             this.$router.push({name:'forget'})

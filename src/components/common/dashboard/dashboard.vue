@@ -10,7 +10,7 @@
                     <span @click="menuClick" class="fa fa-angle-down"></span>
                     <div class="down-menu animated fadeIn" v-if="menuListShow">
                         <ul>
-                            <li v-for="item in menuList" :key="item.id"><i :class="item.icon" class="fa"></i>{{item.name}}</li>
+                            <li @click="listClick(item.id)" v-for="item in menuList" :key="item.id"><i :class="item.icon" class="fa"></i>{{item.name}}</li>
                         </ul>
                     </div>
                 </div>
@@ -139,6 +139,25 @@ export default {
       },
       menuClick(){
           this.menuListShow = !this.menuListShow;
+      },
+      listClick(value){
+        switch(value){
+            case 1:{
+                this.$router.push({name:'friends'});
+                break;
+            }
+            case 2:{
+                this.$router.push({name:'message'});
+                break;
+            }
+            case 3:{
+                this.$router.push({name:'setting'});
+                break;
+            }
+            default:{
+                // this.signOut();
+            }
+        }
       },
       sidebarClick(value){
         switch(value){

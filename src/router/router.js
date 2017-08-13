@@ -20,6 +20,10 @@ import unRead from '../page/unread/unread.vue'
 import friends from '../page/friends/friends.vue'
 //mailbox
 import mailbox from '../page/mailbox/mail.vue'
+//setting
+import setting from '../page/setting/setting.vue'
+import userinfo from '../page/setting/children/userinfo.vue'
+import usersetting from '../page/setting/children/usersetting.vue'
 
 Vue.use(VueRouter)
 // 路由配置：如果需要添加路由，就在这里添加
@@ -91,6 +95,24 @@ const router = new VueRouter({
             path:'/mailbox/:mailId',
             name:'mailbox',
             component:mailbox
+        },
+        //setting
+        {
+            path:'/setting',
+            name:'setting',
+            component:setting,
+            children:[
+                {
+                    path:'userinfo/:userId',
+                    name:'userinfo',
+                    component:userinfo
+                },
+                {
+                    path:'usersetting/:userId',
+                    name:'usersetting',
+                    component:usersetting
+                }
+            ]
         }
     ]
 })

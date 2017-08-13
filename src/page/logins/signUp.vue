@@ -141,7 +141,6 @@ $input-height:70px;
         color:#ffffff;
     }
 }
-
 .login-bg-color {
     background: $back-color;
 }
