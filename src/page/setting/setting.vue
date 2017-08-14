@@ -35,6 +35,7 @@ export default {
             position: fixed;
             top:0;
             width:100%;
+            z-index:3;
             .nav-navbar{
                 position: absolute;
                 bottom:0;
