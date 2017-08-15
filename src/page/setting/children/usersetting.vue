@@ -3,8 +3,15 @@
       <div class="page-main-inner page-padding">
           <div class="page-userinfo">
              <div class="user-picture">
-                <img src="../../../images/userpic/user-01.jpeg">
-                <button type="button">上传新头像</button>
+                 <form enctype="multipart/form-data">
+                    <img src="../../../images/userpic/user-01.jpeg">
+                    <button type="button">选择上传图片
+                         <input type="file" name="fileUpload" @change="upload"/>
+                    </button>
+                    <div id="imgPreview" v-if="imgPath !== null">
+                        <img :src="imgPath"/>
+                    </div>
+                 </form>
             </div>
             <div class="user-info-item">
                 <div class="info-item-title" @click.stop="title = false"><h1 v-if="title">{{titleValue}}</h1><input v-model="titleValue" v-if="!title" type="text"></div>
@@ -12,14 +19,41 @@
                 <div class="signature" @click.stop="introduce = false"><textarea v-model="introValue" v-if="!introduce"></textarea><p v-if="introduce">{{introValue}}</p></div>
             </div>
           </div>
-          <div class="page-main-inner page-padding">
+          <div class="page-main-inner page-padding space">
             <div class="main-inner-content">
                 <ul>
-                    <li>服务器设置<span class="list-pull-right"><i class="fa fa-toggle-on"></i></span></li>
-                    <li>同步的邮件封数<span class="list-pull-right"><i class="fa fa-toggle-off"></i></span></li>
-                    <li>邮件更新频率<span class="list-pull-right"><i class="fa fa-toggle-on"></i></span></li>
+                    <li>服务器设置<span class="list-pull-right text-right"><i class="fa fa-angle-right"></i></span></li>
+                    <li>同步的邮件封数
+                        <select>
+                            <option value="100封">100封</option>
+                            <option value="200封">200封</option>
+                            <option value="500封">300封</option>
+                        </select>
+                    </li>
+                    <li>邮件更新频率
+                        <select>
+                            <option value="实时">实时</option>
+                            <option value="每小时">每小时</option>
+                            <option value="手动">手动</option>
+                        </select>
+                    </li>
                 </ul>
             </div>
+         </div>
+         <div class="space">
+             <a click="signOut" class="inner-btn">退出登录</a>
+         </div>
+      </div>
+
+      <div class="page-mask" v-if="tipsShow">
+         <div class="page-inner-box">
+             <div class="inner-box-caption">
+                 <h1>真的要退出吗？</h1>
+             </div>
+             <div class="inner-box-btngroup">
+                 <a @click="tipsShow = true">取消</a>
+                 <a @click="signOut">确定</a>
+             </div>
          </div>
       </div>
   </div>
@@ -34,8 +68,9 @@ export default {
         introduce:true,
         titleValue:'皮卡丘',
         contentValue:'pica@fillmail.com',
-        introValue:'个性签名'
-        
+        introValue:'个性签名',
+        tipsShow:false,
+        imgPath:null
     }
   },
   methods:{
@@ -43,13 +78,87 @@ export default {
           this.title = true;
           this.content = true;
           this.introduce = true;
+      },
+      upload(e){
+         var file = e.target.files[0];
+         var createImage = (()=>{
+            var _this = this;
+            var reader = new FileReader();
+
+            reader.addEventListener("load",function(){
+                _this.imgPath = reader.result;
+            },false);
+            if(file){
+                reader.readAsDataURL(file);
+            }
+         });
+         if(file.type.substr(0,5) === 'image'){
+            createImage();
+         }else{
+             alert('对不起，系统仅支持标准格式的图片，请你调整格式后重新上传，谢谢!');
+         }
+      },
+      signOutClick(){
+          this.tipsShow = true;
+      },
+      signOut(){
+
       }
   }
 }
 </script>
 
 <style lang="scss">
+    .page-mask{
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0,0,0,0.6);
+        .page-inner-box{
+            width:600px;
+            height:250px;
+            position: absolute;
+            left:50%;
+            margin-left:-300px;
+            top:350px;
+            background:#ffffff;
+            border-radius: 10px;
+            box-sizing: border-box;
+            padding:40px;
+            .inner-box-caption{
+                h1{
+                    font-size:36px;
+                }
+            }
+            .inner-box-btngroup{
+                position: absolute;
+                bottom:10px;
+                right:40px;
+                a{
+                    display: inline-block;
+                    width:100px;
+                    height:50px;
+                    font-size:30px;
+                }
+            }
+        }
+    }
     .page-main{
+         .space{
+            margin-top:100px;
+        }
+        .inner-btn{
+            display: block;
+            width: 100%;
+            height: 60px;
+            color: #fafafa;
+            text-align: center;
+            line-height: 60px;
+            font-size: 30px;
+            border: 1px solid #fafafa;
+        }
         .page-userinfo{
             margin:40px;
             position: relative;
@@ -68,19 +177,21 @@ export default {
                         font-size:40px;
                     }
                      h1{
+                        color:#e8ecee;
                         font-size:40px;
                     }
                 }
                 .info-item-account{
                     span{
+                        color: #e8ecee;
                         font-size:30px;
                     }
                     input{
+                        color: #e8ecee;
                         width:400px;
                         height:40px;
                         border:1px solid #dddddd;
                         font-size:40px;
-
                     }
                 }
                 .signature{
@@ -90,7 +201,9 @@ export default {
                     bottom: 0;
                     position: absolute;
                     font-size: 30px;
+                    color: #e8ecee;
                     textarea{
+                        color: #e8ecee;
                         width:300px;
                         height:100px;
                         border:none;
@@ -115,6 +228,16 @@ export default {
                 border-radius:10px; 
                 background:-webkit-linear-gradient(top,#ffffff,#e8ecee);
                 font-size:26px;
+                position: relative;
+            }
+            input{
+                position: absolute;
+                font-size:40px;
+                width:180px;
+                height:50px;
+                right: 0;
+                top:0;
+                opacity: 0;
             }
         }
         }

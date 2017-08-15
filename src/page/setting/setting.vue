@@ -1,9 +1,9 @@
 <template>
-  <div class="page-warp animated fadeIn" id="setting">
+  <div class="page-warp animated fadeIn main-bg" id="setting" >
       <header class="nav">
           <div class="nav-navbar">
               <div class="nav-pull-left">
-                  <a>返回</a>
+                  <a @click="back">返回</a>
               </div>
               <div class="nav-pull-right">
                   <a>保存</a>
@@ -16,18 +16,23 @@
 </template>
 <script>
 export default {
-  name:'setting'
+  name:'setting',
+  methods:{
+      back(){
+          window.history.go(-1);
+      }
+  }
 }
 </script>
 <style lang="scss">
   $navhight:75px;
   $backbg:#232542;
+  .main-bg{
+            background:#2e3256;
+        }
     #setting{
         .division{
             border-color: #727272;
-        }
-        .main-bg{
-            background:#2e3256;
         }
         .nav{
             background:$backbg;
@@ -69,7 +74,7 @@ export default {
             margin-top: 150px;
             box-sizing: border-box;
             .page-padding{
-               padding:20px;
+               padding:100px 20px;
             }
             .page-main-info{
                 height:150px;
@@ -129,16 +134,29 @@ export default {
                         height:60px;
                         line-height: 60px;
                         border-bottom: 1px solid #232542;
+                        .text-right{
+                            text-align: right;
+                        }
                         .list-pull-right{
                             width:60px;
                             height:50px;
                             margin:5px 0;
                             position: absolute;
                             right:0;
-                            i{
+                            >i{
                                 font-size:50px;
                             }
                         }
+                         select{
+                                position: absolute;
+                                right:0;
+                                font-size:30px;
+                                color:#fafafa;
+                                text-align: right;
+                            }
+                            option{
+                                font-size:20px !important;
+                            }
                     }
                 }      
                     
