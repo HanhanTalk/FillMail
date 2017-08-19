@@ -151,7 +151,7 @@ export default {
                 break;
             }
             case 3:{
-                this.$router.push({name:'setting'});
+                this.$router.push({ name: 'userinfo', params: { userId: 123 }});
                 break;
             }
             default:{

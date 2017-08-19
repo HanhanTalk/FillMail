@@ -8,9 +8,6 @@
                     <button type="button">选择上传图片
                          <input type="file" name="fileUpload" @change="upload"/>
                     </button>
-                    <div id="imgPreview" v-if="imgPath !== null">
-                        <img :src="imgPath"/>
-                    </div>
                  </form>
             </div>
             <div class="user-info-item">
@@ -56,6 +53,14 @@
              </div>
          </div>
       </div>
+      <div class="page-mask" v-if="imgPath">
+          <div class="page-img-box">
+              <div id="canvasImg">
+                    <img :src="imgPath">
+              </div>
+              <button type="button" @click="updateImg">确定上传</button>
+          </div>
+      </div>
   </div>
 </template>
 <script>
@@ -98,6 +103,39 @@ export default {
              alert('对不起，系统仅支持标准格式的图片，请你调整格式后重新上传，谢谢!');
          }
       },
+      paintImage(){
+        var mycanvas = document.getElementById("canvasImg");
+        var ctx = mycanvas.getContext('2d');
+        divWidth = mycanvas.width;
+        divHight = mycanvas.hight;
+        var img = new Image();
+        img.src = this.imgPath;
+        img.onload = function(){
+            //等比例缩放图片
+           if(img.width < divWidth && img.height < divHight){
+                img.width = divWidth;
+           } else {
+               var pWidth = img.width / (img.height / divHight);
+               var pHigth = img.height / (img.width / divWidth);
+                var imgWidth = img.width > img.height ?  divWidth: pWidth;
+                var imgHeight = img.height > img.width ? divHight : pHeight;
+                }
+                //图片的坐标
+                t.px = (t.regional.offsetWidth - t.imgWidth) / 2 + 'px';
+                t.py = (t.regional.offsetHeight - t.imgHeight) / 2 + 'px';
+                
+                t.getImage.height = t.imgHeight;
+                t.getImage.width = t.imgWidth;
+                t.getImage.style.left = t.px;
+                t.getImage.style.top = t.py;
+            
+                createCanvas.drawImage(img,0,0,t.imgWidth,t.imgHeight);//没用直接插入背景图片而用canvas绘制图片，是为了调整所需框内图片的大小
+                t.imgUrl = t.getImage.toDataURL();//储存canvas绘制的图片地址
+                t.cutImage();
+                t.drag();
+  };
+},
+
       signOutClick(){
           this.tipsShow = true;
       },
@@ -116,6 +154,37 @@ export default {
         left: 0;
         right: 0;
         background: rgba(0,0,0,0.6);
+        .page-img-box{
+            width:600px;
+            height:600px;
+            position: absolute;
+            left:50%;
+            margin-left:-300px;
+            top:200px;
+            background:#ffffff;
+            border-radius: 20px;
+            box-sizing: border-box;
+            padding:40px;
+            text-align: center;
+            img{
+                width:450px;
+                height:450px;
+            }
+            button{
+                position: absolute;
+                bottom:20px;
+                left:50%;
+                margin-left:-200px;
+                width:400px;
+                height:80px;
+                background:#727272;
+                border: none;
+                border-radius: 10px;
+                font-size:30px;
+                color:#ffffff;
+            }
+
+        }
         .page-inner-box{
             width:600px;
             height:250px;

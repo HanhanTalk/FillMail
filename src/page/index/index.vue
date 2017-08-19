@@ -66,7 +66,7 @@ export default {
     }
   }
   .ui-index{
-    z-index:1;
+    z-index:3;
   }
   .page-warp{
     position: absolute;
