@@ -90,83 +90,7 @@ $input-height:70px;
     .reg-bg-color{
         background:$back-color;
     }
-    .mui-bar {
-        height: $navbar-height;
-        background: $navbar-color;
-         .nav-btn{
-            width:250px;
-            height:80px;
-            background:$back-color;
-            color:$navbar-color;
-            margin:0 10px;
-            }
-        }
-        .mui-icon-middle {
-            width: $navbar-height;
-            height: $navbar-height;
-        }
-        .mui-icon {
-            position: relative;
-            display: block;
-            background: $back-color;
-            color: $navbar-color;
-            .mui-logo-babge {
-                position: absolute;
-                top: 40px;
-                right: 10px;
-                font-size: $font-small;
-                }
-            img {
-                margin: 15px;
-                width: 120px;
-                height: 120px;
-            }
-        }
-        .mui-pull-left {
-            float: left;
-        }
-        .mui-pull-right {
-            float: right;
-            a{  
-                color:#000000;
-                font-size:$font-middle;
-                text-decoration: none;
-            }
-        }
-}
-.fairlylong {
-    height: $navbar-height;
-    line-height: $navbar-height;
-    a{
-        color:#ffffff;
-    }
-}
-.login-bg-color {
-    background: $back-color;
-}
-
-.mui-form{
-    margin: 100px 80px;
-}
-.form-title{
-    font-size:$font-title;
-    h1{
-        color:$navbar-color;
-    }
-}
-.form-user-pic{
-    width: 300px;
-    height: 300px;
-    img{
-        width: 200px;
-        height:200px;
-        margin: 50px 0;
-    }
-}
-.user-pic-circle{
-    border-radius: 20px;
-}
-.mui-list-item-inner{
+    .mui-list-item-inner{
     margin: 20px 0;
     label{
         font-size:$font-small;
@@ -211,7 +135,7 @@ $input-height:70px;
         width: 100%;
         height: 100%;
         border-radius: $input-height/2;
-        border: none;
+        border: 1px solid #dddddd;
         box-sizing: border-box;
         padding:0 30px;
         font-size:$font-middle;
@@ -225,7 +149,7 @@ $input-height:70px;
     font-size:$font-middle;
     margin: 150px 0 50px 0;
     a{
-        color:#f9a825;
+        color:#f9a825 !important;
     }
     p{
         color:#000000;
@@ -240,6 +164,82 @@ $input-height:70px;
 .form-btn{
     height:80px;
     width:400px;
+}
+    .mui-bar {
+        height: $navbar-height;
+        background: $navbar-color;
+         .nav-btn{
+            width:250px;
+            height:80px;
+            background:$back-color;
+            color:$navbar-color;
+            margin:0 10px;
+            }
+        }
+        .mui-icon-middle {
+            width: $navbar-height;
+            height: $navbar-height;
+        }
+        .mui-icon {
+            position: relative;
+            display: block;
+            background: $back-color;
+            color: $navbar-color;
+            .mui-logo-babge {
+                position: absolute;
+                top: 40px;
+                right: 10px;
+                font-size: $font-small;
+                }
+            img {
+                margin: 15px;
+                width: 120px;
+                height: 120px;
+            }
+        }
+        .mui-pull-left {
+            float: left;
+        }
+        .mui-pull-right {
+            float: right;
+            a{  
+                color:#000000;
+                font-size:$font-middle;
+                text-decoration: none;
+            }
+        }
+        .fairlylong {
+    height: $navbar-height;
+    line-height: $navbar-height;
+    a{
+        color:#ffffff;
+    }
+}
+.login-bg-color {
+    background: $back-color;
+}
+
+}
+.mui-form{
+    margin: 100px 80px;
+}
+.form-title{
+    font-size:$font-title;
+    h1{
+        color:$navbar-color;
+    }
+}
+.form-user-pic{
+    width: 300px;
+    height: 300px;
+    img{
+        width: 200px;
+        height:200px;
+        margin: 50px 0;
+    }
+}
+.user-pic-circle{
+    border-radius: 20px;
 }
 .col-yellow{
     background:#ffcb02;

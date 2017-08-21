@@ -8,7 +8,7 @@
                 </span>
             </a>
             <div class="mui-pull-right fairlylong">
-                <a href="javascript:;">没有账号？</a>
+                <a>没有账号？</a>
                 <button @click="toSignUp" type="button" class="mui-btn nav-btn">立即注册</button>
             </div>
         </header>
@@ -26,19 +26,21 @@
                     <div class="mui-list-item">
                         <div class="mui-list-item-inner">
                             <div class="mui-list-item-input">
-                                <input @focus="onFocus" class="box-noline" type="text" placeholder="请输入邮箱*" v-model="account">
+                                <input @focus="onFocus('mailNull')" class="box-noline" type="text" placeholder="请输入邮箱*" v-model="account">
+                                <span v-if="mailNull"><i class="fa fa-exclamation-circle"></i>你还没有输入邮箱</span>
                             </div>
                             <div class="mui-list-item-input">
-                                <input @focus="onFocus" class="box-noline" type="password" placeholder="请输入密码*" v-model="password">
+                                <input @focus="onFocus('passNull')" class="box-noline" type="password" placeholder="请输入密码*" v-model="password">
+                                <span v-if="passNull"><i class="fa fa-exclamation-circle"></i>你还没有输入密码</span>
                             </div>
                         </div>
                         <div class="mui-item-bottom">
                             <div class="radio-ctrl">
                                 <input type="radio" name="remember" id="remember"> 
                                 <label for="remember">记住我？</label>
-                                <a href="javascript:;" class="mui-radio"><span class="fa fa-check"></span></a>
+                                <a class="mui-radio" @click="remember"><span class="fa fa-check" :class="[cheack ? 'choose-col':'unchoose-col']"></span></a>
                             </div>
-                            <a @click="forgetPass" class="mui-pull-right" href="javascript:;">糟糕了，忘记了密码</a>        
+                            <a @click="forgetPass" class="mui-pull-right" >糟糕了，忘记了密码</a>        
                         </div>
                         <button @click="toLogin" type="button" class="mui-btn form-btn col-yellow">立即登录</button>
                     </div>
@@ -54,6 +56,9 @@ export default {
     name: 'singIn',
     data(){
         return{
+            mailNull:false,
+            passNull:false,
+            cheack:false,
             account:'',
             password:''
         }
@@ -64,8 +69,12 @@ export default {
         },
         toLogin(){
             //登录成功后跳转
-            if( this.account == '' || this.password == ''){
-                alert('用户名或密码不能为空！');
+            if( this.password === ''){
+                if(this.account === ''){
+                    this.mailNull = true;
+                }else{
+                    this.passNull = true;
+                }
             }
             else{
                 //调用API登录接口
@@ -80,11 +89,24 @@ export default {
               
             }
         },
+        remember(){
+            this.cheack = !this.cheack;
+            if(this.cheack){
+                //
+            }else{
+                //
+            }
+        },
         forgetPass(){
             this.$router.push({name:'forget'})
         },
-        onFocus(){
+        onFocus(value){
             let _this = this;
+            if(value === 'mailNull'){
+                this.mailNull = false;
+            }else{
+                this.passNull = false;
+            }
             setTimeout(function(){
                 let _pannel = _this.$refs.formSignIn;
                 _pannel.scrollIntoView(true);
@@ -116,6 +138,12 @@ overflow: hidden;
     background:$back-color;
     color:$navbar-color;
     margin:0 10px;
+}
+.mui-btn{
+    border:none;
+    outline: none;
+    font-size:$font-middle;
+    border-radius:50px; 
 }
 .mui-bar {
     height: $navbar-height;
@@ -194,6 +222,20 @@ overflow: hidden;
                 width: 100%;
                 height:$input-height;
                 margin-bottom:$input-height;
+                position: relative;
+                span{
+                    display: block;
+                    height: 70px;
+                    line-height: 70px;
+                    font-size:26px;
+                    position: absolute;
+                    right: 0;
+                    top:0;
+                    border-radius: 0 35px 35px 0;
+                    color:#e91e63;
+                    background:#f9f0f2;
+                    padding:0 10px;
+                }
                 input{
                     width: 100%;
                     height: 100%;
@@ -231,6 +273,12 @@ overflow: hidden;
                         span{
                             font-size:40px;
                             margin-left:4px;
+                        }
+                        .choose-col{
+                            color:#727272;
+                        }
+                        .unchoose-col{
+                            color: #dddddd;
                         }
                     }
                     
