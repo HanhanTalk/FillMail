@@ -44,12 +44,17 @@
 # 目录结构
 
 ## src：
-> assets 资源目录，用于组织编译的静态资源
-> components 组件目录，用于应用的vue.js组件
-> pages 页面目录，用于组织应用的路由及视图
-> plugins 插件目录，用于组织需要在根vue.js应用实例化之前需要运行的 Javascript 插件。
-> store 目录用于组织应用的 Vuex 状态树 文件。
-> router vue-router配置
+> assets:资源目录，用于组织编译的静态资源
+
+> components:组件目录，用于应用的vue.js组件
+
+> pages:页面目录，用于组织应用的路由及视图
+
+> plugins:插件目录，用于组织需要在根vue.js应用实例化之前需要运行的 Javascript 插件。
+
+> store:目录用于组织应用的 Vuex 状态树 文件。
+
+> router:vue-router配置
 ## server：
 > node 目录
 
