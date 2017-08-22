@@ -104,6 +104,7 @@ export default {
          }
       },
       paintImage(){
+        var t = this;
         var mycanvas = document.getElementById("canvasImg");
         var ctx = mycanvas.getContext('2d');
         divWidth = mycanvas.width;

@@ -56,16 +56,20 @@ export default {
     name: 'singIn',
     data(){
         return{
-            mailNull:false,
-            passNull:false,
-            cheack:false,
-            account:'',
-            password:''
+            mailNull:false, //账号为空
+            passNull:false, //密码为空
+            cheack:false, //是否记住用户
+            account:'',     //账号    
+            password:''      //密码
         }
     },
     methods:{
+        //跳转到注册
         toSignUp(){
             this.$router.push({name:'signUp'})
+        },
+        toLogin(){
+
         },
         toLogin(){
             //登录成功后跳转
@@ -77,18 +81,21 @@ export default {
                 }
             }
             else{
-                //调用API登录接口
+                //登录检查
                 api.signIn({
                     name:this.account,
                     password:this.password
-                }).then((response) => {
+                }).then((response)=>{
                     //登录成功
-                    this.$router.push({name:'inbox'}); 
-                    this.password = '';
+                    this.$router.push({name:'inbox'});
                 })
-              
+                
             }
         },
+        //获取用户头像
+       
+
+        //是否记住用户
         remember(){
             this.cheack = !this.cheack;
             if(this.cheack){
@@ -97,9 +104,11 @@ export default {
                 //
             }
         },
+        //跳转到密码找回
         forgetPass(){
             this.$router.push({name:'forget'})
         },
+
         onFocus(value){
             let _this = this;
             if(value === 'mailNull'){
@@ -271,8 +280,7 @@ overflow: hidden;
                         background:$navbar-color;
                         border-radius: 5px;
                         span{
-                            font-size:40px;
-                            margin-left:4px;
+                            font-size:45px;
                         }
                         .choose-col{
                             color:#727272;
