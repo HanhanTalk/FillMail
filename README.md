@@ -36,7 +36,7 @@
 
 > 登录页
 
- ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410072978.jpg)
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410072978.jpg =200)
 
  > 注册页
 
