@@ -82,13 +82,19 @@ export default {
             }
             else{
                 //登录检查
-                api.signIn({
-                    name:this.account,
-                    password:this.password
-                }).then((response)=>{
-                    //登录成功
+
+                //测试用
+                if(this.account == 'admin' && this.password == 'admin'){
                     this.$router.push({name:'inbox'});
-                })
+                }
+
+                // api.signIn({
+                //     name:this.account,
+                //     password:this.password
+                // }).then((response)=>{
+                //     //登录成功
+                //     this.$router.push({name:'inbox'});
+                // })
                 
             }
         },
