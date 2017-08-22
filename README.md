@@ -36,16 +36,35 @@
 
 > 登录页
 
- ![image](https://github.com/HanhanTalk/FillMail/screenshots/1503410072978.jpg)
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410072978.jpg)
 
  > 注册页
 
- ![image](https://github.com/HanhanTalk/FillMail/screenshots/1503410175639.jpg)
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410175639.jpg)
 
  > 找回密码
 
- ![image](https://github.com/HanhanTalk/FillMail/screenshots/1503410219343.jpg)
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410219343.jpg)
+
+ > 收件箱
+
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410297721.jpg)
+
+ > 未读邮件
+
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410297721.jpg)
  
+ > 发送邮件
+
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410603878.jpg)
+
+ > 联系人
+
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410731272.jpg)
+
+ > 侧边栏
+
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410913553.jpg)
 
 # 总结
 
@@ -68,5 +87,3 @@
 > router:vue-router配置
 ## server：
 > node 目录
-
-
