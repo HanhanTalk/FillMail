@@ -4,7 +4,7 @@
           <headGui @transferEven="fadeShow"></headGui>
           <router-view></router-view>
       </div>
-    <dashboard></dashboard>
+    <dashboard @transferEven = "fadeShow"></dashboard>
   </div>
 </template>
  <script type="text/ecmascript6">

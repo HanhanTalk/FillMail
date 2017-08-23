@@ -51,8 +51,6 @@ const info = (param) => {
 const forget = (param) =>{
     return _post('/users/forget',param);
 }
-
-
 export default{
     signIn,
     signOut,

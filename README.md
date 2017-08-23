@@ -66,6 +66,10 @@
 
  ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503410913553.jpg)
 
+ > 查看邮件
+
+ ![image](https://github.com/HanhanTalk/FillMail/blob/master/screenshots/1503468326029.jpg)
+ 
 # 总结
 
 > vue虽然不像angular那样是一个完整的框架（几乎不需要依赖其他东西，自己以一敌百），但是配合上vuex、vue-router等工具依然可以胜任各种单页面应用了，而且vue相较于angular也有更为友好的学习曲线，这次开发过程中还是存在对项目整体驾驭不足的情况，在项目的扩展性上思考的略少，不过收获还是有的，对vue掌握更加的熟练，以后做项目开发，不管使用怎样的技术栈，整体的开发流程和思路应该不会有很大的变化。

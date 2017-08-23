@@ -7,41 +7,40 @@
                 <a @click="back"><img src="../../images/icons/icon_001.png"></a>
             </div>
             <div class="nav-pull-right">
-                <a @click="starClick"><i class="fa" :class="[stared ? 'fa-star':'fa-star-o']"></i></a>
+                <a @click="starClick"><i class="fa" :class="[mail.stared ? 'fa-star':'fa-star-o']"></i></a>
             </div>
-            <div class="nav-title">NEW PROJECT INQUIRY</div>
+            <div class="nav-title">{{mail.title}}</div>
           </div>
       </header>
       <div class="warp-content">
          <div class="warp-content-head">
             <div class="head-info">
-                <img src="../../images/userpic/user-01.jpeg">
+                <img :src="mail.senderPic">
                 <div class="head-info-text">
-                    <h1>Sergey</h1>
-                    <span>to:me</span>
+                    <h1>{{mail.senderName}}</h1>
+                    <span>发送给:我</span>
                 </div>
             </div>
-            <div class="head-time"><span>2:55PM(23 hours ago)</span></div>
+            <div class="head-time"><span>{{mail.sendTime}}</span></div>
          </div>
          <div class="warp-content-inner">
              <div class="inner-text">
                 <p>
-                    海绵宝宝是方块形的黄色海绵，住在比基尼海滩（裤头村、比奇堡）的一个菠萝里，他的宠物是一只会“猫~猫~”叫的海蜗牛小蜗，海绵宝宝喜欢捕捉水母，职业是蟹堡王（The Krusty Krab）里的头号厨师。派大星和姗迪都是他的朋友。
-                    海绵宝宝总是能给平静的世界制造麻烦，虽然闹出一些笑话，不过他总能摆脱困境，然后又制造出新的麻烦.
+                    {{mail.content}}
                 </p>
             <div class="inner-images">
 
             </div>
-            <div class="inner-attachment">
+            <div class="inner-attachment" v-if="mail.file">
                 <div class="inner-head">
                     <h1><span class="fa fa-paperclip"></span>附件</h1>
                 </div>
                 <div class="inner-content">
-                    <img src="../../images/icons/file.svg">
-                    <span>PDF</span>
+                    <img :src="mail.file.fileTypeIcon">
+                    <span>{{mail.file.fileType}}</span>
                     <div class="inner-content-right">
-                        <h1>Creative brief - Appalo app</h1>
-                        <span>22.85MB</span>
+                        <h1>{{mail.file.fileName}}</h1>
+                        <span>{{mail.file.fileSize}}</span>
                     </div>
                 </div>
             </div>
@@ -51,15 +50,18 @@
       <div class="warp-bottom">
          <div class="btn-group">
              <div class="float-left">
-                 <a><i class="fa fa-reply"></i>Reply</a>
-                 <a><i class="fa fa-share"></i>Forward</a>
+                 <a @click="replyClick"><i class="fa fa-reply"></i>回复</a>
+                 <a><i class="fa fa-share"></i>转发</a>
+                 <a><i class="fa fa-trash"></i>删除</a>
              </div>
              <div class="float-right">
                  <a><i class="fa fa-ellipsis-v"></i></a>
              </div>
          </div>
       </div>
-
+     <div class="mail-btn-menu">
+        <!--底部工具栏-->
+     </div>
   </div>
 </template>
 <script>
@@ -67,7 +69,25 @@ export default {
   name:'mailbox',
   data(){
       return{
-          stared:false
+          //模拟数据
+          mail:{
+              id:891,
+              stared:false,
+              read:true,
+              senderName:'海绵宝宝',
+              senderAccount:'',
+              senderPic:'./src/images/userpic/user-03.jpeg',
+              sendTime:'11:20AM',
+              title:'哈啰，我是海绵宝宝',
+              content:'海绵宝宝是方块形的黄色海绵，住在比基尼海滩（裤头村、比奇堡）的一个菠萝里，他的宠物是一只会“猫~猫~”叫的海蜗牛小蜗，海绵宝宝喜欢捕捉水母，职业是蟹堡王（The Krusty Krab）里的头号厨师。派大星和姗迪都是他的朋友。'+
+                    '海绵宝宝总是能给平静的世界制造麻烦，虽然闹出一些笑话，不过他总能摆脱困境，然后又制造出新的麻烦.',
+              file:{
+                  fileType:'PDF',
+                  fileTypeIcon:'./src/images/icons/file.svg',
+                  fileName:'派大星的故事',
+                  fileSize:'20 MB'
+              }
+          }
       }
   },
   methods:{
@@ -75,7 +95,11 @@ export default {
         window.history.go(-1);
       },
       starClick(){
-          this.stared = !this.stared;
+          this.mail.stared = !this.mail.stared;
+        //发送请求到服务端，修改邮件stared,邮件从普通邮件队列到星标邮件队列
+      },
+      replyClick(){
+          this.$router.push({name:'sendMail'});
       }
   }
 }
@@ -218,9 +242,12 @@ export default {
                 }
                 .inner-content{
                     position: relative;
+                    height:80px;
+                    width:100%;
+                    background:#dddddd;
                     img{
-                        height:auto;
-                        width:80px;
+                        height:80px;
+                        width:auto;
                         position: absolute;
                         left:0;
                      }
@@ -231,7 +258,8 @@ export default {
                         font-size:20px;
                      }
                      .inner-content-right{
-                        width: 600px;
+                        width: 500px;
+                        overflow: hidden;
                         position: absolute;
                         left: 80px;
                         top: 10px;

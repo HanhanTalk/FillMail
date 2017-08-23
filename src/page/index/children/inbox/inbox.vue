@@ -7,7 +7,7 @@
               <ul>
                 <div class="mui-page-item-list">
                 <div v-if="item.date !== 'today'" class="date-division"><span>{{item.date}}</span></div>
-                <li v-for="mail in item.mailList" :key="mail.id" :class="{'unread-bg':mail.unread}">
+                <li @click="mailClick(mail.id)" v-for="mail in item.mailList" :key="mail.id" :class="{'unread-bg':mail.unread}">
                   <div class="mui-pull-left mui-small">
                       <img :src="mail.url">
                       <span v-if="mail.unread" class="item-badge"></span>
@@ -48,7 +48,7 @@
             date:'today',
             mailList:[
                     {
-                      id:1,
+                      id:891,
                       name:'海绵宝宝',
                       url:'./src/images/userpic/user-03.jpeg',
                       title:'哈啰，我是海绵宝宝',
@@ -58,7 +58,7 @@
                       unread:true
                     },
                     {
-                      id:2,
+                      id:892,
                       name:'面具男',
                       url:'./src/images/userpic/user-02.jpeg',
                       title:'今天你会来吗？',
@@ -67,7 +67,7 @@
                       unread:false
                     },
                     {
-                      id:3,
+                      id:893,
                       name:'熊猫',
                       url:'./src/images/userpic/user-04.jpeg',
                       title:'没什么想说的',
@@ -81,7 +81,7 @@
             date:'YESTERDAY',
             mailList:[
               {
-                id:1,
+                id:881,
                 name:'2哈',
                 url:'./src/images/userpic/user-05.jpeg',
                 title:'因催思挺',
@@ -90,7 +90,7 @@
                 unread:false
               },
               {
-                id:2,
+                id:882,
                 name:'小黄淫',
                 url:'./src/images/userpic/user-09.jpeg',
                 title:'banana～',
@@ -104,20 +104,27 @@
             date:'8月7日',
             mailList:[
               {
-                id:1,
+                id:871,
                 name:'葫芦娃',
                 url:'./src/images/userpic/user-10.jpeg',
                 title:'我要去救爷爷',
                 time:'7:07AM',
-                content:'我真的不是去看蛇。。女王大人',
+                content:'。。女王大人',
                 unread:true
               }
             ]
           }
         ],
       }
+    },
+    mounted(){
+      
+    },
+    methods:{
+      mailClick(value){
+        this.$router.push({name:'mailbox',params:{mailId:value}})
+      }
     }
-    
   }
   </script>
   

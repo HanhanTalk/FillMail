@@ -26,9 +26,9 @@
           <hr class="division">
           <div class="mui-sidebar-list">
              <ul>
-                 <li @click="sidebarClick(item)" v-for="item in sidebarList" :key="item.id">
+                 <li @click="sidebarClick(item.id)" v-for="item in sidebarList" :key="item.id">
                     <span class="fa" :class="item.icon"></span>
-                        <a href="javascript:;">{{item.name}}</a>
+                        <a>{{item.name}}</a>
                     <span v-if="item.tag !== 0" class="mui-pull-right mui-tag">{{item.tag}}</span>
                  </li>
              </ul>
@@ -41,7 +41,7 @@
               <ul>
                   <li v-for="item in labelList" :key="item.id">
                       <span class="fa" :class="item.icon"></span>
-                      </a href="javascript:;">{{item.name}}</a>
+                      <a>{{item.name}}</a>
                   </li>
               </ul>
           </div>
@@ -160,31 +160,8 @@ export default {
         }
       },
       sidebarClick(value){
-        switch(value){
-            case 1:{
-                this.$router.push({name:'inbox'});
-                break;
-            }
-            case 2:{
-                this.$router.push({name:'starred'});
-                break;
-            }
-            case 3:{
-                this.$router.push({name:'drafts'});
-                break;
-            }
-            case 4:{
-                this.$router.push({name:'sentmail'});
-                break;
-            }
-            case 5:{
-                this.$router.push({name:'junkmail'});
-                break;
-            }
-            default:{
-                this.$router.push({name:'deleted'});
-            }
-        }
+        this.$router.push({name:'inbox'});
+        this.$emit('transferEven',false);
       }
   }
 }
@@ -239,6 +216,7 @@ export default {
             height: 80px;
             line-height: 80px;
             font-size:$font-middle; 
+            border-radius: 10px;
             a{
                 color: #fafafa;
                 text-decoration: none;
@@ -248,6 +226,9 @@ export default {
                 margin-right:10px; 
                 color:#b6b6b6;
             }
+        }
+        li:active{
+            background:#60c6de;
         }
     }
     .mui-sidebar-title{

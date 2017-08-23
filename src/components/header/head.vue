@@ -1,5 +1,5 @@
 <template>
-    <div class="mui-navbar" :class="{'fiex':fiexValue}">
+    <div class="mui-navbar">
         <div class="mui-navbar-nav">
         <div class="mui-pull-left">
             <span class="fa fa-navicon" @click="dash"></span>
@@ -8,10 +8,9 @@
             <span class="fa fa-envelope-o" @click="unRead">
                 <span class="mui-nav-icon-badge">8</span>
             </span>
-
         </div>
         <div class="mui-nav-title">
-            收件箱
+            
         </div>
         </div>
     </div>
@@ -29,14 +28,6 @@ export default {
       dash(){
          this.isShow = !this.isShow;
          this.$emit('transferEven',this.isShow);
-        if(this.isShow){
-            this.fiexValue = false;
-        }
-        if(!this.isShow){
-            setTimeout(()=>{
-                this.fiexValue = true;
-            },1000);
-        }
       },
       unRead(){
         this.$router.push({name:'unRead'});
@@ -48,10 +39,6 @@ export default {
     $navbar-color:#232542;
     $font-color:cyan;
     $navbar-height:100px;
-    .fiex{
-        position: fixed !important;
-        z-index: 3;
-    }
     .mui-navbar{
         height: $navbar-height;
         background: $navbar-color;

@@ -24,6 +24,7 @@
     "font-awesome": "^4.7.0",
     "font-awesome-webpack": "^0.0.5-beta.2",
     "less-loader": "^4.0.5",
+    "mockjs": "^1.0.1-beta3",
     "node-sass": "^4.5.0",
     "sass-loader": "^5.0.1",
     "style-loader": "^0.18.2",

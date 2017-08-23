@@ -81,13 +81,12 @@ export default {
                 }
             }
             else{
-                //登录检查
-
-                //测试用
-                if(this.account == 'admin' && this.password == 'admin'){
+                if( this.account === 'admin' && this.password === '123456'){
                     this.$router.push({name:'inbox'});
+                }else{
+                    alert('邮箱号或密码错误');
                 }
-
+                //登录检查
                 // api.signIn({
                 //     name:this.account,
                 //     password:this.password
