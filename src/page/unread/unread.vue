@@ -44,17 +44,17 @@
           <div class="bottom-btn-group">
             <ul>
               <li v-for="item in icons" :key="item.id">
-                <a type="button" href="javascript:;"><img :src="item.icon"></a>
+                <a type="button" @click="btnClick(item.id)"><img :src="item.icon"></a>
               </li>
             </ul>
           </div>
           <div class="bottom-item">
             <div class="bottom-item-inner mui-pull-left ">
-               <a @click="domCtrl('left')" href="javascript:;"><i class="fa fa-arrow-left"></i>
+               <a @click="domCtrl('left')"><i class="fa fa-arrow-left"></i>
                <span>上一封</span></a>
             </div>
             <div class="bottom-item-inner mui-pull-right text-right">
-               <a @click="domCtrl('right')" href="javascript:;"><span>下一封</span>
+               <a @click="domCtrl('right')"><span>下一封</span>
                <i class="fa fa-arrow-right"></i></a>
             </div>
           </div>
@@ -127,15 +127,28 @@ export default {
     },
     mounted(){
       this.tempData = this.userData[0];
-      // setTimeout(function(){
-      //   this.loadMail();
-      // }.bind(this),100);  
       setTimeout(()=>{
         this.loadMail();
       },100);
 
     },
     methods:{
+      btnClick(value){
+         switch (value) {
+            case 1:{
+             //下载这个邮件
+              break;
+            }
+            case 2:{
+              //跳转到邮件页
+              this.$router.push({name:'mailbox',params:{mailId:891}})
+              break;
+            }
+            default:{
+              //删除邮件
+            }
+         }
+      },
       mailSwitch(_value){
         var _index;      
           this.userData.forEach(function(element,index){

@@ -4,7 +4,7 @@
           <div class="mui-sidebar-head">
             <div class="frofile">
                 <div class="frofile-icon mui-pull-left">
-                    <img src="../../../images/userpic/user-01.jpeg">
+                    <img :src="userInfo.portrait">
                 </div>
                 <div class="frofile-icon mui-pull-right">
                     <span @click="menuClick" class="fa fa-angle-down"></span>
@@ -15,8 +15,8 @@
                     </div>
                 </div>
                 <div class="frofile-item">
-                    <p class="frofile-item-title">Matthew Dix</p>
-                    <span>MatthewDix@fillmail.com</span>
+                    <p class="frofile-item-title">{{userInfo.nick}}</p>
+                    <span>{{userInfo.account}}</span>
                 </div>
             </div> 
           </div>
@@ -39,7 +39,7 @@
                   标签 <span class="fa fa-plus mui-pull-right"></span>
               </div>
               <ul>
-                  <li v-for="item in labelList" :key="item.id">
+                  <li v-for="item in mailGroup" :key="item.id">
                       <span class="fa" :class="item.icon"></span>
                       <a>{{item.name}}</a>
                   </li>
@@ -48,7 +48,8 @@
        </div>
    </div>
 </template>
-<script type="text/ecmascript6">
+ <script type="text/ecmascript6">
+   import { mapState } from 'vuex'
 export default {
   name:'dashboard',
   data() {
@@ -133,6 +134,12 @@ export default {
           menuListShow:false
       }
   },
+  computed:mapState(
+      [
+        'userInfo',
+        'mailGroup'
+      ]
+  ),
   methods:{
       sendMail(){
           this.$router.push({name:'sendMail'});
@@ -156,6 +163,7 @@ export default {
             }
             default:{
                 // this.signOut();
+                this.$router.push({name:'signIn'});
             }
         }
       },

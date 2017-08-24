@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router/router'
+import store from './store/index'
 
 
 // import 'font-awesome-webpack'
@@ -11,8 +12,22 @@ import './style/animate.css'
 var app = new Vue({
   template:'<App/>',
   router,
-  components:{App},
+  store,
 
+  components:{App},
+  watch:{
+    //监听路由检查登录
+    "$route":'checkLogin'
+  },
+  create(){
+    this.checkLogin();
+  },
+  methods:{
+    checkLogin(){
+      //检查是否存在session
+      
+      }
+    }
 })
 
 app.$mount('#app');

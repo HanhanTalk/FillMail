@@ -37,12 +37,14 @@
   
  <script type="text/ecmascript6">
  import search from '../../../../components/common/search.vue'
+ import { mapMutations } from 'vuex'
   export default {
     name:'inbox',
     components:{ search },
     //模拟数据
     data(){
       return{
+        title:'收件箱',
         mailBox:[
           {
             date:'today',
@@ -118,11 +120,17 @@
       }
     },
     mounted(){
-      
+      this.setTitle();
     },
     methods:{
+      // ...mapMutations([
+      //   ''
+      // ]),
+      setTitle(){
+        this.$store.commit('updateTitle',this.title);
+      },
       mailClick(value){
-        this.$router.push({name:'mailbox',params:{mailId:value}})
+        this.$router.push({name:'mailbox',params:{mailId:value}});
       }
     }
   }

@@ -16,7 +16,8 @@
             <div class="mui-form">
                 <div class="mui-form-head">
                     <div class="form-user-pic">
-                        <img class="user-pic-circle" src="../../images/userpic/user-01.jpeg">
+                        <img v-if="imgloadUrl" class="user-pic-circle" :src="userPicUrl">
+                        <img v-if="!imgloadUrl" class="user-pic-circle" src="../../images/userpic/anonym.jpg">
                     </div>
                     <div class="form-title">
                         <h1>用户登录</h1>
@@ -60,16 +61,15 @@ export default {
             passNull:false, //密码为空
             cheack:false, //是否记住用户
             account:'',     //账号    
-            password:''      //密码
+            password:'',    //密码
+            imgloadUrl:null,  //用户图片加载地址
+            userInfo:null
         }
     },
     methods:{
         //跳转到注册
         toSignUp(){
             this.$router.push({name:'signUp'})
-        },
-        toLogin(){
-
         },
         toLogin(){
             //登录成功后跳转
@@ -81,8 +81,24 @@ export default {
                 }
             }
             else{
-                if( this.account === 'admin' && this.password === '123456'){
+                if( this.account == 'pica@fillmail.com' && this.password == '123456'){
                     this.$router.push({name:'inbox'});
+                     //数据模拟
+                    this.userInfo = {
+                        uid:'100000',
+                        nick:'皮卡丘',
+                        account:'pica@fillmail.com',
+                        password:'123456',
+                        portrait:'./src/images/userpic/user-01.jpeg'
+                    }
+                    var labelList = [
+                        {name:'工作',icon:'fa-suitcase'},
+                        {name:'家庭',icon:'fa-users'},
+                        {name:'重要的',icon:'fa-info-circle'}
+                        ]
+                    //提交mutation到store
+                    this.$store.commit('updateUserInfo',this.userInfo);
+                    this.$store.commit('updatemailGroup',labelList);
                 }else{
                     alert('邮箱号或密码错误');
                 }
@@ -94,11 +110,12 @@ export default {
                 //     //登录成功
                 //     this.$router.push({name:'inbox'});
                 // })
-                
             }
         },
         //获取用户头像
-       
+        getUserImg(){
+            this.imgloadUrl = this.userInfo.portrait;
+        },
 
         //是否记住用户
         remember(){
@@ -111,7 +128,7 @@ export default {
         },
         //跳转到密码找回
         forgetPass(){
-            this.$router.push({name:'forget'})
+            this.$router.push({name:'forget'});
         },
 
         onFocus(value){
@@ -267,6 +284,7 @@ overflow: hidden;
                     color:#ffffff;
                     font-size:$font-middle;
                     margin: 150px 0 50px 0;
+                    position: relative;
                     input{
                         width:40px;
                         height:40px;
@@ -306,6 +324,7 @@ overflow: hidden;
                         display: block;
                         float: right;
                     }
+                   
                 }
                 .mui-btn{
                     border:none;

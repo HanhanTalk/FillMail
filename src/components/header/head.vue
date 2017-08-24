@@ -10,12 +10,13 @@
             </span>
         </div>
         <div class="mui-nav-title">
-            
+            {{title}}
         </div>
         </div>
     </div>
 </template>
-<script type="text/ecmascript6">
+ <script type="text/ecmascript6">
+ import { mapState } from 'vuex'
 export default {
   name:'headGui',
   data(){
@@ -24,6 +25,9 @@ export default {
         fiexValue:true
     }
   },
+  computed:mapState([
+        'title'
+  ]),
   methods:{
       dash(){
          this.isShow = !this.isShow;
