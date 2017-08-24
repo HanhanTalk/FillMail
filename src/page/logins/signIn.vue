@@ -66,6 +66,11 @@ export default {
             userInfo:null
         }
     },
+    mounted() {
+        if (this.$store.state.userInfo.uid) {
+            this.$router.push({name:'inbox'});
+        }
+    },
     methods:{
         //跳转到注册
         toSignUp(){
@@ -95,7 +100,7 @@ export default {
                         {name:'工作',icon:'fa-suitcase'},
                         {name:'家庭',icon:'fa-users'},
                         {name:'重要的',icon:'fa-info-circle'}
-                        ]
+                    ]
                     //提交mutation到store
                     this.$store.commit('updateUserInfo',this.userInfo);
                     this.$store.commit('updatemailGroup',labelList);

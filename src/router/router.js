@@ -29,6 +29,10 @@ Vue.use(VueRouter)
 // 路由配置：如果需要添加路由，就在这里添加
 const router = new VueRouter({
     routes:[
+        {
+           path: '/',
+           redirect: '/index'
+        },
         //主页
         {
             path:'/index',

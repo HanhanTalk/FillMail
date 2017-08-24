@@ -20,7 +20,12 @@ export default {
   },
   methods:{
     fadeShow(data){
-        this.show = data;
+      this.show = data;
+    }
+  },
+  mounted() {
+    if (!this.$store.state.userInfo.uid) {
+      this.$router.push({name:'signIn'});  
     }
   }
 }
