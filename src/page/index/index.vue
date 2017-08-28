@@ -1,6 +1,5 @@
 <template>
-  <div :class="{'overhide':show}" class="page-warp">
-    <h1>{{onTop}}</h1>
+  <div :class="{'overhide':show}" class="wapper">
       <div class="ui-index page-inner-box" :class="[show ? 'toShow overhide':'toHide']">
           <div id = "headBar" :class="[onTop ? 'flex':'']">
               <headGui @transferEven="fadeShow"></headGui>
@@ -100,21 +99,13 @@ export default {
   .ui-index{
     z-index:3;
   }
-  .page-warp{
+  .wapper{
     position: absolute;
     top:0;
     left:0;
     right:0;
     bottom: 0;
   }
-  // .mui-index-warp{
-  //   position: absolute;
-  //   top:0;
-  //   left:0;
-  //   right:0;
-  //   bottom: 0;
-  //   overflow-y:scroll; 
-  // }
   .page-inner-box{
     width:750px;
   }
