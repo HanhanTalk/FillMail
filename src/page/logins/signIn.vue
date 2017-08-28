@@ -96,7 +96,7 @@ export default {
                         nick:'皮卡丘',
                         account:'pica@fillmail.com',
                         password:'123456',
-                        portrait:'./src/images/userpic/user-01.jpeg'
+                        portrait:'src/images/userpic/user-01.jpeg'
                     }
                     var labelList = [
                         {name:'工作',icon:'fa-suitcase'},

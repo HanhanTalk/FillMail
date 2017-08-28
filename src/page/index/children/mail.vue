@@ -2,7 +2,7 @@
     <div class="mui-page">
       <search></search>
       <div class="page-warp-inner">
-        <ul v-if="!noMail">
+        <ul v-if="!mailBox.length == 0">
           <li v-for="item in mailBox" :key="item.id">
               <ul>
                 <div class="mui-page-item-list">
@@ -53,8 +53,7 @@
         path:null,
         mailBox:[],
         today:null,
-        yesterday:null,
-        noMail:false
+        yesterday:null
       }
     },
     watch:{
