@@ -2,7 +2,7 @@
     <div class="mui-page">
       <search></search>
       <div class="page-warp-inner">
-        <ul>
+        <ul v-if="!noMail">
           <li v-for="item in mailBox" :key="item.id">
               <ul>
                 <div class="mui-page-item-list">
@@ -32,6 +32,9 @@
               </ul>
           </li>
         </ul>  
+        <div class="middleText" v-if="mailBox.length == 0">
+          <h1>没有邮件</h1>
+        </div>
       </div>  
     </div>
   </template>
@@ -51,6 +54,7 @@
         mailBox:[],
         today:null,
         yesterday:null,
+        noMail:false
       }
     },
     watch:{
@@ -155,6 +159,19 @@
               background: #35395f;
               line-height: 50px;
           }
+        }
+        .page-warp-inner{
+           .middleText{
+              width: 400px;
+              height: 400px;
+              margin: 0 auto;
+              text-align: center;
+              line-height: 400px;
+           h1{
+              font-size:30px;
+              color:#fafafa;
+           }
+        }
         }
     .mui-page-item-list{
        margin-top: 50px;

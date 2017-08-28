@@ -71,19 +71,10 @@
         }
      ],
    "starred":[
-    {
+       {
         "date":"8月28日",
         "mailList":[
-            {
-                "id":891,
-                 "name":"海绵宝宝",
-                 "url":"./src/images/userpic/user-03.jpeg",
-                 "title":"哈啰，我是海绵宝宝",
-                 "time":"11:20AM",
-                 "content":"海绵宝宝是方块形的黄色海绵，住在比基尼",
-                 "unread":true
-            },
-            {
+                {
                 "id":892,
                 "name":"面具男",
                 "url":"./src/images/userpic/user-02.jpeg",
@@ -91,17 +82,75 @@
                 "time":"8:20AM",
                 "content":"......",
                 "unread":false
-            },
-            {
-                "id":893,
-                "name":"熊猫",
-                "url":"./src/images/userpic/user-04.jpeg",
-                "title":"没什么想说的",
-                "time":"15:21PM",
-                "content":"竹子，我要竹子！",
-                "unread":true
-              }
+                }
             ]
-    }
-   ] 
+        },
+        {
+            "date":"8月27日",
+            "mailList":[
+                {
+                    "id":881,
+                    "name":"2哈",
+                    "url":"./src/images/userpic/user-05.jpeg",
+                    "title":"因催思挺",
+                    "time":"8:21AM",
+                    "content":"你们这些人啊，总想搞个大新闻",
+                    "unread":false
+                }
+            ]
+        }
+   ],
+   "drafts":[
+        {
+            "date":"8月27日",
+            "mailList":[
+                {
+                    "id":881231,
+                    "name":"2哈",
+                    "url":"./src/images/userpic/user-05.jpeg",
+                    "title":"[草稿]无",
+                    "time":"8:21AM",
+                    "content":"无",
+                    "unread":false
+                }
+            ]
+        }
+   ],
+   "sentmail":[
+        {
+            "date":"8月7日",
+            "mailList":[
+                {
+                    "id":881231,
+                    "name":"海绵宝宝",
+                    "url":"./src/images/userpic/user-03.jpeg",
+                    "title":"hello,周末去海边吧",
+                    "time":"8:21AM",
+                    "content":"叫上小伙伴一起",
+                    "unread":false
+                }
+            ]    
+        }
+   ],
+   "deleted":[
+       {
+        "date":"8月6日",
+        "mailList":[
+            {
+                "id":881232,
+                "name":"小黄淫",
+                "url":"./src/images/userpic/user-09.jpeg",
+                "title":"周末我的大电影上映了",
+                "time":"8:21AM",
+                "content":"叫上小伙伴一起去影院支持我",
+                "unread":false
+            }
+            ]    
+       }
+   ],
+   "trash":[
+       {
+            
+       }
+   ]
 }
