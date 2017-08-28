@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-// import mutations from './mutations'
+import mutations from './mutations'
 
 Vue.use(Vuex)
 //声明一个状态state
@@ -16,17 +16,17 @@ const state = {
     mailGroup:[]   //用户邮件分组
 }
 //状态更新
-const mutations = {
-    updateUserInfo(state,newUserInfo) {
-        state.userInfo = newUserInfo;
-    },
-    updateTitle(state,newTitle){
-        state.title = newTitle;
-    },
-    updatemailGroup(state,newmailGroup){
-        state.mailGroup = newmailGroup;
-    }
-}
+// const mutations = {
+//     updateUserInfo(state,newUserInfo) {
+//         state.userInfo = newUserInfo;
+//     },
+//     updateTitle(state,newTitle){
+//         state.title = newTitle;
+//     },
+//     updatemailGroup(state,newmailGroup){
+//         state.mailGroup = newmailGroup;
+//     }
+// }
 
 export default new Vuex.Store({
     state,

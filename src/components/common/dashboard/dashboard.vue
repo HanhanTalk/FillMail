@@ -26,7 +26,7 @@
           <hr class="division">
           <div class="mui-sidebar-list">
              <ul>
-                 <li @click="sidebarClick(item.id)" v-for="item in sidebarList" :key="item.id">
+                 <li @click="sidebarClick(item.value)" v-for="item in sidebarList" :key="item.id">
                     <span class="fa" :class="item.icon"></span>
                         <a>{{item.name}}</a>
                     <span v-if="item.tag !== 0" class="mui-pull-right mui-tag">{{item.tag}}</span>
@@ -49,7 +49,7 @@
    </div>
 </template>
  <script type="text/ecmascript6">
-   import { mapState } from 'vuex'
+   import { mapState,mapMutations } from 'vuex'
 export default {
   name:'dashboard',
   data() {
@@ -79,36 +79,42 @@ export default {
           sidebarList: [
               {
                   id: 1,
+                  value:'inbox',
                   name: '收件箱',
                   icon: 'fa-inbox',
                   tag:8
               },
               {
                   id: 2,
+                  value:'starred',
                   name: '星标邮件',
                   icon: 'fa-star-o',
                   tag:0
               },
               {
                   id:3,
+                  value:'drafts',
                   name:'草稿箱',
                   icon:'fa-folder-open-o',
                   tag:0
               },
               {
                   id:4,
+                  value:'sentmail',
                   name:'已发送',
                   icon:'fa-send',
                   tag:0
               },
               {
                   id:5,
+                  value:'trash',
                   name:'垃圾邮件',
                   icon:'fa-minus-circle',
                   tag:0
               },
               {
                   id:6,
+                  value:'deleted',
                   name:'已删除',
                   icon:'fa-trash',
                   tag:0
@@ -141,6 +147,7 @@ export default {
       ]
   ),
   methods:{
+      ...mapMutations(['GET_USERINFO']),
       sendMail(){
           this.$router.push({name:'sendMail'});
       },
@@ -158,17 +165,30 @@ export default {
                 break;
             }
             case 3:{
-                this.$router.push({ name: 'userinfo', params: { userId: 123 }});
+                this.$router.push({ name: 'userinfo', params: { userId: this.userInfo.uid }});
                 break;
             }
             default:{
-                // this.signOut();
-                this.$router.push({name:'signIn'});
+                 this.signOut();
             }
         }
       },
+      signOut(){
+          //后台退出接口
+
+         //清除用户信息
+         var currentUser = {
+             uid:null,
+             account:null,
+             password:null,
+             nick:null,
+             portrait:null
+         }
+         this.GET_USERINFO(currentUser);
+         this.$router.push({name:'signIn'});
+      },
       sidebarClick(value){
-        this.$router.push({name:'inbox'});
+        this.$router.push({name:'mail',params:{pathName:value}});  
         this.$emit('transferEven',false);
       }
   }

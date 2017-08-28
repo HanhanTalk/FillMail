@@ -10,7 +10,7 @@ import protocol from '../page/logins/protocol.vue'
 import index from '../page/index/index.vue'
 
 //dashboard
-import inbox from '../page/index/children/inbox/inbox.vue'
+import mail from '../page/index/children/mail.vue'
 // import deleted from '../page/index/childen/deleted/deleted.vue'
 //sendMail
 import sendMail from '../page/send/send.vue'
@@ -19,7 +19,7 @@ import unRead from '../page/unread/unread.vue'
 //friends
 import friends from '../page/friends/friends.vue'
 //mailbox
-import mailbox from '../page/mailbox/mail.vue'
+import mailbox from '../page/mailbox/mailbox.vue'
 //setting
 import setting from '../page/setting/setting.vue'
 import userinfo from '../page/setting/children/userinfo.vue'
@@ -40,15 +40,13 @@ const router = new VueRouter({
             component:index,
             children:[
                 {
-                    path:'inbox',
-                    name:'inbox',
-                    component:inbox
-                },
-                // {
-                //     path:'deleted',
-                //     name:'deleted',
-                //     component:deleted
-                // }
+                    path:'mail/:pathName',
+                    name:'mail',
+                    component:mail,
+                    // beforeEnter:(to,from,next)=>{
+
+                    // }
+                }
             ]
         },
         //发送邮件

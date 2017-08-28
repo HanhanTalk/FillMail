@@ -53,6 +53,7 @@
  <script type="text/scmascript6">
  import api from '../../api/api'
 //  import { signIn } from '../../api/api'
+import { mapMutations } from 'vuex'
 export default {
     name: 'singIn',
     data(){
@@ -72,6 +73,7 @@ export default {
         }
     },
     methods:{
+        ...mapMutations(['GET_USERINFO','GET_MAILGROUP']),
         //跳转到注册
         toSignUp(){
             this.$router.push({name:'signUp'})
@@ -102,8 +104,8 @@ export default {
                         {name:'重要的',icon:'fa-info-circle'}
                     ]
                     //提交mutation到store
-                    this.$store.commit('updateUserInfo',this.userInfo);
-                    this.$store.commit('updatemailGroup',labelList);
+                    this.GET_USERINFO(this.userInfo);
+                    this.GET_MAILGROUP(labelList);
                 }else{
                     alert('邮箱号或密码错误');
                 }
@@ -114,6 +116,7 @@ export default {
                 // }).then((response)=>{
                 //     //登录成功
                 //     this.$router.push({name:'inbox'});
+                //     
                 // })
             }
         },

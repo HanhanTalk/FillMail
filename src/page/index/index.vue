@@ -1,7 +1,10 @@
 <template>
   <div :class="{'overhide':show}" class="page-warp">
+    <h1>{{onTop}}</h1>
       <div class="ui-index page-inner-box" :class="[show ? 'toShow overhide':'toHide']">
-          <headGui @transferEven="fadeShow"></headGui>
+          <div id = "headBar" :class="[onTop ? 'flex':'']">
+              <headGui @transferEven="fadeShow"></headGui>
+          </div>
           <router-view></router-view>
       </div>
     <dashboard @transferEven = "fadeShow"></dashboard>
@@ -15,22 +18,46 @@ export default {
   components:{ headGui,dashboard },
   data(){
     return{
-      show:false
+      show:false,
+      onTop:false
     }
   },
   methods:{
     fadeShow(data){
+      if(data){
+        this.onTop = false;
+      }else{
+        window.addEventListener('scroll',this.listenScroll);
+      }
       this.show = data;
-    }
+    },
+    listenScroll(e){
+      var _this = this;
+      if(e){
+        window.removeEventListener('scroll',this.listenScroll);
+           _this.onTop = true;
+        }
+      }
   },
   mounted() {
     if (!this.$store.state.userInfo.uid) {
       this.$router.push({name:'signIn'});  
+    }else{
+      this.$router.push({name:'mail',params:{pathName:'inbox'}})
     }
+    window.addEventListener('scroll',this.listenScroll);
+
   }
+
 }
 </script>
 <style lang="scss">
+  .flex{
+    position: fixed;
+    top:0;
+    width:100%;
+    z-index:3;
+  }
   .toShow{
     position: absolute;
     left: 500px !important;
