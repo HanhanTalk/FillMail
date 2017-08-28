@@ -90,7 +90,7 @@ export default {
       },
       getPage(){
           var _this = this;
-          axios.get('/mock/mail.json').then(function(response){
+          axios.get('mock/mail.json').then(function(response){
               _this.mailbox = response.data.mail;
               _this.getMail();
         })

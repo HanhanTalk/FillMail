@@ -104,7 +104,7 @@
       getPage(){
         var _this = this;
         var _value = this.path;
-        axios.get('/mock/data.json').then(function(response){
+        axios.get('mock/data.json').then(function(response){
               _this.mailBox = response.data[_value];
         })
       },
