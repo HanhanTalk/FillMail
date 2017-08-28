@@ -2,11 +2,12 @@
     <div class="mui-page">
       <search></search>
       <div class="page-warp-inner">
-        <ul>
+        <ul v-if="!mailBox.length == 0">
           <li v-for="item in mailBox" :key="item.id">
               <ul>
                 <div class="mui-page-item-list">
-                <div v-if="item.date !== 'today'" class="date-division"><span>{{item.date}}</span></div>
+                <div v-if="item.date !== today && item.date !== yesterday" class="date-division"><span>{{item.date}}</span></div>
+                <div v-if="item.date == yesterday" class="date-division"><span>昨天</span></div>
                 <li @click="mailClick(mail.id)" v-for="mail in item.mailList" :key="mail.id" :class="{'unread-bg':mail.unread}">
                   <div class="mui-pull-left mui-small">
                       <img :src="mail.url">
@@ -31,106 +32,89 @@
               </ul>
           </li>
         </ul>  
+        <div class="middleText" v-if="mailBox.length == 0">
+          <h1>没有邮件</h1>
+        </div>
       </div>  
     </div>
   </template>
   
  <script type="text/ecmascript6">
- import search from '../../../../components/common/search.vue'
+ import search from '../../../components/common/search.vue'
+//  import api from '../../../api/api'
+  import axios from 'axios'
  import { mapMutations } from 'vuex'
   export default {
-    name:'inbox',
+    name:'mail',
     components:{ search },
     //模拟数据
     data(){
       return{
-        title:'收件箱',
-        mailBox:[
-          {
-            date:'today',
-            mailList:[
-                    {
-                      id:891,
-                      name:'海绵宝宝',
-                      url:'./src/images/userpic/user-03.jpeg',
-                      title:'哈啰，我是海绵宝宝',
-                      time:'11:20AM',
-                      content:'海绵宝宝是方块形的黄色海绵，住在比基尼海滩（裤头村、比奇堡）的一个菠萝里，他的宠物是一只会“猫~猫~”叫的海蜗牛小蜗，海绵宝宝喜欢捕捉水母，职业是蟹堡王（The Krusty Krab）里的头号厨师。派大星和姗迪都是他的朋友。'+
-                            '海绵宝宝总是能给平静的世界制造麻烦，虽然闹出一些笑话，不过他总能摆脱困境，然后又制造出新的麻烦.',
-                      unread:true
-                    },
-                    {
-                      id:892,
-                      name:'面具男',
-                      url:'./src/images/userpic/user-02.jpeg',
-                      title:'今天你会来吗？',
-                      time:'8:20AM',
-                      content:'......',
-                      unread:false
-                    },
-                    {
-                      id:893,
-                      name:'熊猫',
-                      url:'./src/images/userpic/user-04.jpeg',
-                      title:'没什么想说的',
-                      time:'15:21PM',
-                      content:'竹子，我要竹子！',
-                      unread:true
-                    }
-            ]
-          },
-          {
-            date:'YESTERDAY',
-            mailList:[
-              {
-                id:881,
-                name:'2哈',
-                url:'./src/images/userpic/user-05.jpeg',
-                title:'因催思挺',
-                time:'8:21AM',
-                content:'你们这些人啊，总想搞个大新闻',
-                unread:false
-              },
-              {
-                id:882,
-                name:'小黄淫',
-                url:'./src/images/userpic/user-09.jpeg',
-                title:'banana～',
-                time:'7:07AM',
-                content:'*&...*@#!$*&*@#&*@(小黄人语言)',
-                unread:true
-              }
-            ]
-          },
-          {
-            date:'8月7日',
-            mailList:[
-              {
-                id:871,
-                name:'葫芦娃',
-                url:'./src/images/userpic/user-10.jpeg',
-                title:'我要去救爷爷',
-                time:'7:07AM',
-                content:'。。女王大人',
-                unread:true
-              }
-            ]
-          }
-        ],
+        path:null,
+        mailBox:[],
+        today:null,
+        yesterday:null
       }
     },
+    watch:{
+       "$route":"fetchData"
+    },
     mounted(){
-      this.setTitle();
+      this.fetchData();
     },
     methods:{
-      // ...mapMutations([
-      //   ''
-      // ]),
+      ...mapMutations([
+        'GET_TITLE'
+      ]),
+      fetchData(){
+        this.path = this.$route.params.pathName;
+        this.setTitle();
+        this.getPage();
+        this.setDate();
+      },
       setTitle(){
-        this.$store.commit('updateTitle',this.title);
+        var _title = '';
+        switch (this.path){
+          case 'inbox':{
+              _title = '收件箱';
+              break;
+          }
+          case 'starred':{
+             _title = '星标邮件';
+             break;
+          }
+          case 'drafts':{
+            _title = '草稿箱';
+            break;
+          }
+          case 'sentmail':{
+            _title = '已发送';
+            break;
+          }
+          case 'deleted':{
+            _title = '已删除';
+              
+          }
+          default:{
+             _title = '垃圾邮件';
+          }
+        }
+        this.GET_TITLE(_title);
+      },
+      getPage(){
+        var _this = this;
+        var _value = this.path;
+        axios.get('/mock/data.json').then(function(response){
+              _this.mailBox = response.data[_value];
+        })
       },
       mailClick(value){
         this.$router.push({name:'mailbox',params:{mailId:value}});
+      },
+      setDate(){
+        var date = new Date();
+          this.today = date.getMonth()+1 +'月'+ date.getDate() + '日';
+          this.yesterday = (date.getMonth() + 1) + '月' + (date.getDate() - 1) + '日'; 
       }
     }
   }
@@ -174,6 +158,19 @@
               background: #35395f;
               line-height: 50px;
           }
+        }
+        .page-warp-inner{
+           .middleText{
+              width: 400px;
+              height: 400px;
+              margin: 0 auto;
+              text-align: center;
+              line-height: 400px;
+           h1{
+              font-size:30px;
+              color:#fafafa;
+           }
+        }
         }
     .mui-page-item-list{
        margin-top: 50px;

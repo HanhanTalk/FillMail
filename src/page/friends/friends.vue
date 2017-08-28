@@ -88,45 +88,45 @@ export default {
                 id:1,
                 name:'海绵宝宝',
                 account:'haimianbaobao@fillmail.com',
-                url:'./src/images/userpic/user-03.jpeg'
+                url:'src/images/userpic/user-03.jpeg'
                 },
                 {
                 id:2,
                 name:'小怪兽',
                 account:'xiaoguaishou@fillmail.com',
-                url:'./src/images/userpic/user-06.jpeg'
+                url:'src/images/userpic/user-06.jpeg'
                 },
                 {
                 id:3,
                 name:'熊猫',
                 account:'panda@fillmail.com',
-                url:'./src/images/userpic/user-04.jpeg'
+                url:'src/images/userpic/user-04.jpeg'
                 }
             ],
             group:[
                 {
                     id:1,
                     name:'家庭',
-                    url:'./src/images/userpic/group-01.jpeg',
+                    url:'src/images/userpic/group-01.jpeg',
                     info:'3个成员',
                     member:[
                         {
                             id:1,
                             name:'海绵宝宝',
                             account:'haimianbaobao@fillmail.com',
-                            url:'./src/images/userpic/user-03.jpeg'
+                            url:'src/images/userpic/user-03.jpeg'
                         },
                         {
                             id:2,
                             name:'小怪兽',
                             account:'xiaoguaishou@fillmail.com',
-                            url:'./src/images/userpic/user-06.jpeg'
+                            url:'src/images/userpic/user-06.jpeg'
                         },
                         {
                             id:3,
                             name:'熊猫',
                             account:'panda@fillmail.com',
-                            url:'./src/images/userpic/user-04.jpeg'
+                            url:'src/images/userpic/user-04.jpeg'
                         }
                     ]
 

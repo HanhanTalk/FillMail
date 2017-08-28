@@ -1,6 +1,7 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:3000';
+// axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = '/';
 axios.defaults.withCredentials = true;
 axios.defaults.crossDomain = true;
 
@@ -51,7 +52,9 @@ const info = (param) => {
 const forget = (param) =>{
     return _post('/users/forget',param);
 }
-
+// const getpage = (param) =>{
+//     return _get('/')
+// }
 export default{
     signIn,
     signOut,

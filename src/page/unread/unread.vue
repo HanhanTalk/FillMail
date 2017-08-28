@@ -80,17 +80,17 @@ export default {
             {
               id:1,
               name:'download',
-              icon:'./src/images/icons/icon_download.png'
+              icon:'src/images/icons/icon_download.png'
             },
             {
               id:2,
               name:'check',
-              icon:'./src/images/icons/icon_cheak.png'
+              icon:'src/images/icons/icon_cheak.png'
             },
             {
               id:3,
               name:'delete',
-              icon:'./src/images/icons/icon_del.png'
+              icon:'src/images/icons/icon_del.png'
             }
           ],
           //模拟数据
@@ -98,7 +98,7 @@ export default {
             {
               id:1,
               name:'海绵宝宝',
-              url:'./src/images/userpic/user-03.jpeg',
+              url:'src/images/userpic/user-03.jpeg',
               title:'哈啰，我是海绵宝宝',
               time:'11:20AM',
               content:'海绵宝宝是方块形的黄色海绵，住在比基尼海滩（裤头村、比奇堡）的一个菠萝里，他的宠物是一只会“猫~猫~”叫的海蜗牛小蜗，海绵宝宝喜欢捕捉水母，职业是蟹堡王（The Krusty Krab）里的头号厨师。派大星和姗迪都是他的朋友。'+
@@ -108,7 +108,7 @@ export default {
             {
               id:2,
               name:'小怪兽',
-              url:'./src/images/userpic/user-06.jpeg',
+              url:'src/images/userpic/user-06.jpeg',
               title:'我今天打败了奥特曼',
               time:'12:20AM',
               content:'啦啦啦啦啦啦啦啦啦，哈哈哈哈哈哈哈哈哈哈哈哈'
@@ -116,7 +116,7 @@ export default {
             {
               id:3,
               name:'熊猫',
-              url:'./src/images/userpic/user-04.jpeg',
+              url:'src/images/userpic/user-04.jpeg',
               title:'没什么想说的',
               time:'15:21PM',
               content:'竹子，我要竹子！'
