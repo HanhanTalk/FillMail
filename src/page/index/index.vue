@@ -4,6 +4,7 @@
           <div id = "headBar" :class="[onTop ? 'flex':'']">
               <headGui @transferEven="fadeShow"></headGui>
           </div>
+           <progressbar :value="value"></progressbar>
           <router-view></router-view>
       </div>
     <dashboard @transferEven = "fadeShow"></dashboard>
@@ -12,13 +13,15 @@
  <script type="text/ecmascript6">
  import headGui from '../../components/header/head.vue'
  import dashboard from '../../components/common/dashboard/dashboard.vue'
+ import progressbar from '../../components/common/progressbar/progressbar.vue'
 export default {
   name:'index',
-  components:{ headGui,dashboard },
+  components:{ headGui,dashboard,progressbar },
   data(){
     return{
       show:false,
-      onTop:false
+      onTop:false,
+      value:0
     }
   },
   methods:{

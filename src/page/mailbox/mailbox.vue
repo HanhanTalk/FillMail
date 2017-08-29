@@ -80,7 +80,6 @@ export default {
   },
   mounted(){
       this.getPage();
-      console.log(this.userInfo);
   },
   computed:{
     ...mapState([
