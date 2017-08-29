@@ -15,19 +15,6 @@ const state = {
     },
     mailGroup:[]   //用户邮件分组
 }
-//状态更新
-// const mutations = {
-//     updateUserInfo(state,newUserInfo) {
-//         state.userInfo = newUserInfo;
-//     },
-//     updateTitle(state,newTitle){
-//         state.title = newTitle;
-//     },
-//     updatemailGroup(state,newmailGroup){
-//         state.mailGroup = newmailGroup;
-//     }
-// }
-
 export default new Vuex.Store({
     state,
     mutations

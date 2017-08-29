@@ -16,5 +16,11 @@ export default{
     //获取标题
     [GET_TITLE](state,newTitle){
         state.title = newTitle;
-    }
+    },
+    // //获取邮件信息
+    // [GET_MAILINFO](state,{
+
+    // }){
+
+    // }
 }

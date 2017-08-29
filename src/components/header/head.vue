@@ -6,7 +6,7 @@
         </div>
         <div class="mui-pull-right">
             <span class="fa fa-envelope-o" @click="unRead">
-                <span class="mui-nav-icon-badge">8</span>
+                <span class="mui-nav-icon-badge">3</span>
             </span>
         </div>
         <div class="mui-nav-title">

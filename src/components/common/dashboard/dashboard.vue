@@ -82,7 +82,7 @@ export default {
                   value:'inbox',
                   name: '收件箱',
                   icon: 'fa-inbox',
-                  tag:8
+                  tag:3
               },
               {
                   id: 2,

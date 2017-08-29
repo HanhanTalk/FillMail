@@ -18,7 +18,7 @@
                 <img :src="mail.senderPic">
                 <div class="head-info-text">
                     <h1>{{mail.senderName}}</h1>
-                    <span>发送给:我</span>
+                    <p>发送给：<br>{{address }}</p>
                 </div>
             </div>
             <div class="head-time"><span>{{mail.sendTime}}</span></div>
@@ -52,7 +52,8 @@
              <div class="float-left">
                  <a @click="replyClick"><i class="fa fa-reply"></i>回复</a>
                  <a><i class="fa fa-share"></i>转发</a>
-                 <a><i class="fa fa-trash"></i>删除</a>
+                 <a v-if="!Del"><i class="fa fa-trash"></i>删除</a>
+                 <a v-if="Del"><i class="fa fa-refresh"></i>恢复</a>
              </div>
              <div class="float-right">
                  <a><i class="fa fa-ellipsis-v"></i></a>
@@ -66,16 +67,25 @@
 </template>
 <script>
 import axios from 'axios'
+import { mapState } from 'vuex'
 export default {
   name:'mailbox',
   data(){
       return{
           mail:{},
-          mailbox:[]
+          mailbox:[],
+          address:'',
+          Del:false
       }
   },
   mounted(){
       this.getPage();
+      console.log(this.userInfo);
+  },
+  computed:{
+    ...mapState([
+          'userInfo'
+      ]),
   },
   methods:{
       back(){
@@ -102,6 +112,16 @@ export default {
                   _this.mail = element;
               }
           })
+
+          if(this.mail.addressee == this.userInfo.account){
+              this.address = '我'
+          }else{
+              this.address =  this.mail.addressName +'['+ this.mail.addressee+ ']'
+          }
+
+          if(this.mail.del){
+              this.Del = true;
+          }
       }
   }
 }
@@ -208,9 +228,14 @@ export default {
                         color:#fafafa;
                         margin-bottom: 10px;
                     }
-                    span{
+                    p{
+                        width:300px;
                         font-size:26px;
                         color:#dddddd;
+                        overflow : hidden;
+                        white-space:nowrap;
+                        text-overflow: ellipsis;
+                        
                     }
                 }
                
@@ -310,6 +335,9 @@ export default {
             }
         }
     }
+   }
+   .classDel{
+       color:#dddddd;
    }
 </style>
 
